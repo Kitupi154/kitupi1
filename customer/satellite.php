@@ -57,30 +57,29 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $SATELLI
 <body class="bg-gray-100">
 
 <!-- NAVBAR -->
-<div class="bg-black text-white shadow-md">
+<div class="bg-gray text-black shadow-md">
     <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
 
         <h1 class="text-xl font-bold tracking-wide">
-            AMOSI SERVICES
+           MR AMOSI SERVICES TECHNICAL SERVICES
         </h1>
 
         <div class="flex gap-3 items-center">
 
-            <a class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition"
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
                href="customer.php">Home</a>
 
-            <a class="px-4 py-2 rounded-lg bg-yellow-600 hover:bg-yellow-500 transition"
-               href="satellite.php">Satellite</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="satellite.php">satellite dishes</a>
 
-            <a class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 transition"
-               href="cctv.php">CCTV</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="cctv.php">cctv camera</a>
 
-            <a class="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-500 transition"
-               href="tv.php">TV Repair</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="tv.php">tv repairs</a>
 
         </div>
     </div>
-</div>
 
 <!-- HERO -->
 <section class="hero text-white">
@@ -127,7 +126,11 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $SATELLI
         <p class="text-xl font-bold">⚙️ Maintenance Service</p>
         <p class="text-gray-600 mb-3">Regular system checkups for long-term performance.</p>
 
-        <p class="text-xl font-bold">🔧 Extra Solutions</p>
+        <p class="text-xl font-bold">mobile intergration</p>
+        <p class="text-gray-600">
+            intergrating the satelites services in your mobile eg azamtv max
+        </p>
+           <p class="text-xl font-bold">🔧 Extra Solutions</p>
         <p class="text-gray-600">
             LNB replacement, decoder configuration, cable rewiring, and multi-TV setup.
         </p>
@@ -151,10 +154,78 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $SATELLI
 
     <div class="grid md:grid-cols-4 gap-4 text-center">
 
-        <div class="bg-white p-4 rounded shadow">AzamTV Installation</div>
-        <div class="bg-white p-4 rounded shadow">DStv Setup</div>
-        <div class="bg-white p-4 rounded shadow">StarTimes Services</div>
-        <div class="bg-white p-4 rounded shadow">Zuku Installation</div>
+       <div class="rounded-3xl overflow-hidden shadow-xl text-white p-8 relative"
+     style="background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+     url('https://upload.wikimedia.org/wikipedia/commons/5/52/Azam_Media_logo.png');
+     background-size: cover;
+     background-position: center;">
+
+    <h2 class="text-3xl font-bold mb-4">
+        AzamTV Installation & Repairs
+    </h2>
+
+    <ul class="space-y-2 text-lg">
+        <li>✔ Dish Setup Installation</li>
+        <li>✔ Antenna Setup Installation</li>
+        <li>✔ Signal Problems Repair</li>
+        <li>✔ Decoder Configuration</li>
+        <li>✔ Channel Activation</li>
+    </ul>
+</div>
+        <div class="rounded-3xl overflow-hidden shadow-xl text-white p-8 relative"
+     style="background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+     url('https://upload.wikimedia.org/wikipedia/commons/8/81/DStv_logo.png');
+     background-size: cover;
+     background-position: center;">
+
+    <h2 class="text-3xl font-bold mb-4">
+        DSTV Installation & Repairs
+    </h2>
+
+    <ul class="space-y-2 text-lg">
+        <li>✔ Dish Installation</li>
+        <li>✔ Antenna Installation</li>
+        <li>✔ Decoder Setup</li>
+        <li>✔ Signal Alignment</li>
+        <li>✔ Subscription Support</li>
+    </ul>
+</div>
+     <div class="rounded-3xl overflow-hidden shadow-xl text-white p-8 relative"
+     style="background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+     url('https://upload.wikimedia.org/wikipedia/commons/4/49/StarTimes_logo.png');
+     background-size: cover;
+     background-position: center;">
+
+    <h2 class="text-3xl font-bold mb-4">
+        StarTimes Installation & Repairs
+    </h2>
+
+    <ul class="space-y-2 text-lg">
+        <li>✔ Dish Setup</li>
+        <li>✔ Antenna Setup</li>
+        <li>✔ Decoder Repair</li>
+        <li>✔ Signal Troubleshooting</li>
+        <li>✔ Channel Configuration</li>
+    </ul>
+</div>
+     <div class="rounded-3xl overflow-hidden shadow-xl text-white p-8 relative"
+     style="background: linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+     url('https://upload.wikimedia.org/wikipedia/commons/b/bf/Zuku_Logo.png');
+     background-size: cover;
+     background-position: center;">
+
+    <h2 class="text-3xl font-bold mb-4">
+        Zuku Installation & Repairs
+    </h2>
+
+    <ul class="space-y-2 text-lg">
+        <li>✔ Dish Installation</li>
+        <li>✔ Antenna Setup</li>
+        <li>✔ Decoder Maintenance</li>
+        <li>✔ Signal Repair</li>
+        <li>✔ Subscription Assistance</li>
+    </ul>
+</div>
 
     </div>
 </div>
@@ -190,18 +261,51 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $SATELLI
 </div>
 
 <!-- FOOTER -->
-<footer class="bg-black text-white text-center p-6 mt-10">
-    <p>© 2026 Amosi Satellite Services</p>
+
+<footer class="bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Brand -->
+        <div>
+            <h2 class="text-xl font-bold mb-4">MR AMOSI TECHNICAL SERVICES</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                We specialize in satellite installation, CCTV systems, electrical repairs, and technical maintenance services across Dar es Salaam.
+                <br><br>
+                Fast, reliable and professional service delivery.
+            </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+            <h3 class="font-bold mb-4">Quick Links</h3>
+            <div class="flex flex-col gap-2 text-sm text-gray-300">
+                <a href="customer.php" class="hover:text-green-400">Home</a>
+                <a href="satellite.php" class="hover:text-green-400">Services</a>
+                <a href="about.html" class="hover:text-green-400">About Us</a>
+                <a href="contactus.php" class="hover:text-green-400">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+            <h3 class="font-bold mb-4">Contact Us</h3>
+
+            <p class="text-sm text-gray-300">
+                📞 +255 XXX XXX XXX
+            </p>
+
+            <p class="text-sm text-gray-300 mt-2">
+                📧 info@amosiservices.com
+            </p>
+
+            <p class="text-sm text-gray-300 mt-2">
+                📍 Goba – Matosa Ward, Dar es Salaam
+            </p>
+        </div>
+
+    </div>
+
+    <div class="text-center text-xs text-gray-500 py-4 border-t border-gray-800">
+        © 2026 MR AMOSI TECHNICAL SERVICES. All rights reserved.
+    </div>
 </footer>
-
-<script>
-function openModal(){
-    document.getElementById("modal").classList.add("show");
-}
-function closeModal(){
-    document.getElementById("modal").classList.remove("show");
-}
-</script>
-
-</body>
-</html>

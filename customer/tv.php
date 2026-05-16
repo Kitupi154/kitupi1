@@ -57,30 +57,29 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $TV_SERV
 <body class="bg-gray-100">
 
 <!-- ================= NAVBAR ================= -->
-<div class="bg-black text-white shadow-md">
+<div class="bg-gray text-black shadow-md">
     <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
 
         <h1 class="text-xl font-bold tracking-wide">
-            AMOSI SERVICES
+           MR AMOSI SERVICES TECHNICAL SERVICES
         </h1>
 
         <div class="flex gap-3 items-center">
 
-            <a class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition"
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
                href="customer.php">Home</a>
 
-            <a class="px-4 py-2 rounded-lg bg-yellow-600 hover:bg-yellow-500 transition"
-               href="satellite.php">Satellite</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="satellite.php">satellite dishes</a>
 
-            <a class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 transition"
-               href="cctv.php">CCTV</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="cctv.php">cctv camera</a>
 
-            <a class="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-500 transition"
-               href="tv.php">TV Repair</a>
+            <a class="px-4 py-2 rounded-lg bg-white-600 hover:bg-gray-500 transition"
+               href="tv.php">tv repairs</a>
 
         </div>
     </div>
-</div>
 
 <!-- ================= HERO ================= -->
 <section class="hero text-white">
@@ -176,18 +175,50 @@ $images = $conn->query("SELECT * FROM service_images WHERE service_id = $TV_SERV
 </div>
 
 <!-- ================= FOOTER ================= -->
-<footer class="bg-black text-white text-center p-6 mt-10">
-    <p>© 2026 Amosi Technical Services | TV Division</p>
+<footer class="bg-gray-900 text-white">
+    <div class="max-w-6xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-3 gap-10">
+
+        <!-- Brand -->
+        <div>
+            <h2 class="text-xl font-bold mb-4">MR AMOSI TECHNICAL SERVICES</h2>
+            <p class="text-sm text-gray-300 leading-relaxed">
+                We specialize in satellite installation, CCTV systems, electrical repairs, and technical maintenance services across Dar es Salaam.
+                <br><br>
+                Fast, reliable and professional service delivery.
+            </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+            <h3 class="font-bold mb-4">Quick Links</h3>
+            <div class="flex flex-col gap-2 text-sm text-gray-300">
+                <a href="customer.php" class="hover:text-green-400">Home</a>
+                <a href="satellite.php" class="hover:text-green-400">Services</a>
+                <a href="about.html" class="hover:text-green-400">About Us</a>
+                <a href="contactus.php" class="hover:text-green-400">Contact Us</a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+            <h3 class="font-bold mb-4">Contact Us</h3>
+
+            <p class="text-sm text-gray-300">
+                📞 +255 XXX XXX XXX
+            </p>
+
+            <p class="text-sm text-gray-300 mt-2">
+                📧 info@amosiservices.com
+            </p>
+
+            <p class="text-sm text-gray-300 mt-2">
+                📍 Goba – Matosa Ward, Dar es Salaam
+            </p>
+        </div>
+
+    </div>
+
+    <div class="text-center text-xs text-gray-500 py-4 border-t border-gray-800">
+        © 2026 MR AMOSI TECHNICAL SERVICES. All rights reserved.
+    </div>
 </footer>
-
-<script>
-function openModal(){
-    document.getElementById("modal").classList.add("show");
-}
-function closeModal(){
-    document.getElementById("modal").classList.remove("show");
-}
-</script>
-
-</body>
-</html>

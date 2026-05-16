@@ -62,32 +62,23 @@ $tv_row = mysqli_fetch_assoc($tv);
 <body class="bg-gray-100">
 
 <!-- NAVBAR -->
-<div class="bg-black text-white shadow-md">
+<div class="bg-gray text-black shadow-md">
     <div class="max-w-6xl mx-auto flex justify-between items-center p-4">
 
         <h1 class="text-xl font-bold tracking-wide">
-            AMOSI SERVICES
+            MR AMOSI SERVICES TECHNICAL SERVICES
         </h1>
 
         <div class="flex gap-3 items-center">
-
-            <a class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-500 transition"
-               href="customer.php">Home</a>
-
-            <a class="px-4 py-2 rounded-lg bg-yellow-600 hover:bg-yellow-500 transition"
-               href="satellite.php">Satellite</a>
-
-            <a class="px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 transition"
-               href="cctv.php">CCTV</a>
-
-            <a class="px-4 py-2 rounded-lg bg-green-600 hover:bg-green-500 transition"
-               href="tv.php">TV Repair</a>
-
+            <a class="px-4 py-2 rounded-lg hover:bg-gray-200" href="customer.php">Home</a>
+            <a class="px-4 py-2 rounded-lg hover:bg-gray-200" href="customer.php">Services</a>
+            <a class="px-4 py-2 rounded-lg hover:bg-gray-200" href="about.php">About Us</a>
+            <a class="px-4 py-2 rounded-lg hover:bg-gray-200" href="contactus.php">Contact Us</a>
         </div>
     </div>
 </div>
 
-<!-- HERO SECTION -->
+
 <!-- HERO SECTION -->
 <section class="relative">
 
@@ -129,17 +120,17 @@ $tv_row = mysqli_fetch_assoc($tv);
         <div class="mt-8 flex justify-center gap-4 flex-wrap">
 
             <a href="tv.php"
-               class="bg-green-500 hover:bg-green-600 text-black font-bold px-6 py-3 rounded-lg transition">
+                 class="bg-gray-500 hover:bg-gray-600 text-black font-bold px-6 py-3 rounded-lg transition">
                 TV Services
             </a>
 
             <a href="cctv.php"
-               class="bg-red-500 hover:bg-red-600 text-white font-bold px-6 py-3 rounded-lg transition">
+                 class="bg-gray-500 hover:bg-gray-600 text-black font-bold px-6 py-3 rounded-lg transition">
                 CCTV Services
             </a>
 
             <a href="satellite.php"
-               class="bg-yellow-500 hover:bg-yellow-600 text-black font-bold px-6 py-3 rounded-lg transition">
+               class="bg-gray-500 hover:bg-gray-600 text-black font-bold px-6 py-3 rounded-lg transition">
                 Satellite Services
             </a>
 
@@ -211,9 +202,51 @@ $tv_row = mysqli_fetch_assoc($tv);
 </section>
 
 <!-- FOOTER -->
-<footer class="bg-black text-white text-center p-6 mt-10">
-    <p class="text-sm">© 2026 Amosi Technical Services | All Rights Reserved</p>
-</footer>
 
-</body>
-</html>
+<footer class="bg-primary-container text-white">
+    <div class="max-w-container_max mx-auto px-lg py-xxl grid grid-cols-1 md:grid-cols-3 gap-lg">
+
+        <!-- Brand -->
+        <div>
+            <h2 class="text-xl font-bold mb-md">MR AMOSI TECHNICAL SERVICES</h2>
+            <p class="text-sm opacity-80 leading-relaxed">
+                We specialize in satellite installation, CCTV systems, electrical repairs, and technical maintenance services across Dar es Salaam.
+                <br><br>
+                Our focus is quality workmanship, fast response, and trusted service delivery.
+            </p>
+        </div>
+
+        <!-- Links -->
+        <div>
+            <h3 class="font-bold mb-md">Quick Links</h3>
+            <div class="flex flex-col gap-sm text-sm opacity-80">
+                <a href="customer.php">Home</a>
+                <a href="satellite.php">Services</a>
+                <a href="about.html">About Us</a>
+                <a href="contactus.php">Contact us</a>
+            </div>
+        </div>
+
+        <!-- Contact -->
+        <div>
+            <h3 class="font-bold mb-md">Contact Us</h3>
+
+            <p class="text-sm opacity-80">
+                📞 <?= htmlspecialchars($settings['phone']); ?>
+            </p>
+
+            <p class="text-sm opacity-80 mt-sm">
+                📧 <?= htmlspecialchars($settings['email']); ?>
+            </p>
+
+            <p class="text-sm opacity-80 mt-sm">
+                📍 Goba – Matosa Ward, Dar es Salaam
+            </p>
+        </div>
+
+    </div>
+
+    <div class="text-center text-xs opacity-60 py-md border-t border-white/10">
+        © 2026 MR AMOSI TECHNICAL SERVICES. All rights reserved.
+    </div>
+</footer>
