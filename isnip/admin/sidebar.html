@@ -1,0 +1,518 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<!-- Navigation Links -->
+<nav class="flex-1 space-y-1 overflow-y-auto custom-scrollbar">
+<!-- Dashboard Active -->
+<div class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-body-md text-body-md">Customers</span>
+
+        <li>
+
+            <a href=".html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-body-md text-body-md">Shipments</span>
+        <li>
+
+            <a href="shipment-management.html"
+            class="<?=
+            ($current_page
+            == 'shipment-management.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    shipments
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="font-body-md text-body-md">Cargo Management</span>
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="sailing">sailing</span>
+<span class="font-body-md text-body-md">Vessel Tracking</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md text-body-md">Routes &amp; Ports</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="location_on">location_on</span>
+<span class="font-body-md text-body-md">GPS Monitoring</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-body-md text-body-md">Messages</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-body-md text-body-md">Notifications</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer hover:bg-on-primary/5 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+
+        <li>
+
+            <a href="admindash.html"
+            class="<?=
+            ($current_page
+            == 'admindash.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+</nav>
+<!-- Sidebar Footer -->
+<div class="mt-auto px-lg pt-lg border-t border-on-primary/10">
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+
+        <li>
+
+            <a href="system-settings.html"
+            class="<?=
+            ($current_page
+            == 'system-settings.html')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+</div>
+<div class="flex items-center gap-sm text-error-container hover:text-on-error-container py-sm cursor-pointer transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-body-md text-body-md">Logout</span>
+</div>
+<p class="text-on-primary/40 font-label-md text-[10px] mt-md">SYSTEM V1.2.4</p>
+</div>
+</aside>
+
+<?php
+if(session_status() == PHP_SESSION_NONE){
+    session_start();
+}
+
+$current_page =
+basename($_SERVER['PHP_SELF']);
+?>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+
+    <!-- LOGO -->
+    <div class="logo-box">
+
+        <div>
+
+            <h2 class="logo-text">
+                AMOSI
+            </h2>
+
+            <small class="logo-sub">
+                Technical Services
+            </small>
+
+        </div>
+
+        <!-- TOGGLE BUTTON -->
+        <button
+        id="toggleSidebar"
+        class="toggle-btn">
+
+            ☰
+
+        </button>
+
+    </div>
+
+    <!-- MENU -->
+    <ul class="menu">
+
+        <!-- DASHBOARD -->
+        <li>
+
+            <a href="admindash.php"
+            class="<?=
+            ($current_page
+            == 'admindash.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📊
+                </span>
+
+                <span class="text">
+                    Dashboard
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- SERVICES -->
+        <li>
+
+            <a href="services.php"
+            class="<?=
+            ($current_page
+            == 'services.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    🛠
+                </span>
+
+                <span class="text">
+                    Services
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- REQUESTS -->
+        <li>
+
+            <a href="requests.php"
+            class="<?=
+            ($current_page
+            == 'requests.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    📋
+                </span>
+
+                <span class="text">
+                    Requests
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- CONTACT MESSAGES -->
+        <li>
+
+            <a href="messages.php"
+            class="<?=
+            ($current_page
+            == 'messages.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    ✉️
+                </span>
+
+                <span class="text">
+                    Messages
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- GALLERY -->
+        <li>
+
+            <a href="gallery.php"
+            class="<?=
+            ($current_page
+            == 'gallery.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    🖼
+                </span>
+
+                <span class="text">
+                    Gallery
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- TESTIMONIALS -->
+        <li>
+
+            <a href="testimonials.php"
+            class="<?=
+            ($current_page
+            == 'testimonials.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    ⭐
+                </span>
+
+                <span class="text">
+                    Testimonials
+                </span>
+
+            </a>
+
+        </li>
+
+        <!-- SETTINGS -->
+        <li>
+
+            <a href="setting.php"
+            class="<?=
+            ($current_page
+            == 'setting.php')
+            ? 'active' : ''
+            ?>">
+
+                <span class="icon">
+                    ⚙️
+                </span>
+
+                <span class="text">
+                    Settings
+                </span>
+
+            </a>
+
+        </li>
+
+    </ul>
+
+    <!-- FOOTER -->
+    <div class="sidebar-footer">
+
+        <a href="logout.php">
+
+            <span class="icon">
+                🚪
+            </span>
+
+            <span class="text">
+                Logout
+            </span>
+
+        </a>
+
+    </div>
+
+</aside>
+</body>
+</html>

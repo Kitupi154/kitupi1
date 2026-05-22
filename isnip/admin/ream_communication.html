@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ISNIS | Fleet Command Communications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#004f7f",
+                        "surface-container-highest": "#dce3ec",
+                        "primary-fixed": "#d7e2ff",
+                        "on-background": "#151c22",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#98cbff",
+                        "surface-dim": "#d4dbe3",
+                        "secondary": "#5d5f5f",
+                        "tertiary-fixed": "#cfe5ff",
+                        "background": "#f6f9ff",
+                        "primary": "#00346f",
+                        "outline-variant": "#c2c6d3",
+                        "on-surface-variant": "#424751",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#255dad",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#9bbdff",
+                        "surface-variant": "#dce3ec",
+                        "primary-fixed-dim": "#abc7ff",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface": "#f6f9ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed": "#001b3f",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e2e9f1",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#f6f9ff",
+                        "outline": "#737783",
+                        "on-surface": "#151c22",
+                        "surface-container-low": "#eef4fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d33",
+                        "tertiary": "#00385c",
+                        "inverse-on-surface": "#ebf1fa",
+                        "primary-container": "#004a99",
+                        "on-tertiary-container": "#82c2ff",
+                        "inverse-surface": "#2a3138",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed-variant": "#004a77",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e8eef7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #dce3ec;
+            border-radius: 10px;
+        }
+        .message-gradient {
+            background: linear-gradient(135deg, #004a99 0%, #00346f 100%);
+        }
+        .active-glow {
+            box-shadow: 0 0 15px rgba(0, 74, 153, 0.2);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md selection:bg-primary-fixed selection:text-on-primary-fixed overflow-hidden">
+<!-- Navigation Drawer (SideNav) -->
+<aside class="fixed left-0 top-0 h-full z-50 flex flex-col py-xl bg-gradient-to-b from-primary to-tertiary w-[260px] shadow-xl">
+<div class="px-md mb-xl flex flex-col gap-xs">
+<h1 class="font-headline-md text-headline-md text-on-primary font-bold">ISNIS</h1>
+<div class="flex items-center gap-sm mt-md p-sm bg-surface-container-lowest/10 rounded-lg">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden">
+<img alt="Vessel Operator" class="w-full h-full object-cover" data-alt="A professional portrait of a senior maritime logistics officer in a modern control room. The lighting is crisp and blue-toned, reflecting a high-tech operations center environment. He wears a dark navy uniform, and the background shows blurred screens of global shipping routes, creating a reliable and executive atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjoS0UuadNaHhLoSlcnzFUOzOT-08kJ35QUvOfRrSbbeDtttn2BJObYG4DQNEkoGgowlVlrTc4rOoStV6qSGPnTQ2RIIAIW75jApOTeB1aQRuyxWmIYrnmrm7A4EOBFIFR2Lfnz0oUBZWPDqWZ_0OsbJDGL7zpofSa1wCoikA_w6IJTqdaGJtLX31c_47_DhzaRHxwH9ol8AaBgUnQQ5IYiI0obAzhHYs8sP9E7V7FZwDIgQk1CxEeCs4wzvJCkmskAPi2kJAcqcCj"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-primary">ISNIS Operator</p>
+<p class="font-body-sm text-body-sm text-on-primary/70">Fleet Command</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 flex flex-col gap-xs">
+<!-- Navigation Items Mapping -->
+<a class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md hover:bg-on-primary/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md hover:bg-on-primary/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-md text-body-md">Shipments</span>
+</a>
+<a class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md hover:bg-on-primary/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">sailing</span>
+<span class="font-body-md text-body-md">Vessel Tracking</span>
+</a>
+<a class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md" href="#">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-body-md text-body-md">Messages</span>
+</a>
+<a class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md hover:bg-on-primary/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-body-md text-body-md">Notifications</span>
+</a>
+<a class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md hover:bg-on-primary/5 transition-all duration-200" href="#">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</a>
+</nav>
+<div class="px-md mt-auto pt-xl">
+<div class="p-sm bg-white/5 rounded-xl">
+<p class="font-label-md text-label-md text-on-primary/50 mb-xs">SYSTEM STATUS</p>
+<div class="flex items-center gap-sm">
+<div class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></div>
+<span class="font-body-sm text-body-sm text-on-primary">Network Online</span>
+</div>
+<p class="font-label-md text-label-md text-on-primary/30 mt-sm">V1.2.4</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="ml-[260px] h-screen flex flex-col relative overflow-hidden">
+<!-- TopAppBar -->
+<header class="h-16 flex justify-between items-center px-lg bg-surface border-b border-outline-variant shadow-sm z-40 sticky top-0">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h2 class="font-headline-sm text-headline-sm text-primary">ISNIS Navigation</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center bg-surface-container px-md py-xs rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant text-[20px] mr-sm">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-sm w-64" placeholder="Search messages, staff..." type="text"/>
+<span class="text-label-md text-on-surface-variant bg-surface-container-high px-xs rounded">⌘K</span>
+</div>
+<div class="flex items-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">help</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center font-bold text-[12px]">
+                        JD
+                    </div>
+</div>
+</div>
+</header>
+<!-- Messaging Layout Container -->
+<div class="flex-1 flex overflow-hidden">
+<!-- Conversations Sidebar -->
+<section class="w-80 flex flex-col border-r border-outline-variant bg-surface-container-low/50">
+<div class="p-md flex items-center justify-between">
+<h3 class="font-headline-sm text-headline-sm">Staff Chat</h3>
+<button class="p-xs rounded-lg bg-primary-container text-on-primary hover:bg-primary transition-colors">
+<span class="material-symbols-outlined">edit_square</span>
+</button>
+</div>
+<!-- Tabs for Chat/Alerts -->
+<div class="flex px-md border-b border-outline-variant">
+<button class="flex-1 py-sm font-label-md text-label-md text-primary border-b-2 border-primary">RECENT</button>
+<button class="flex-1 py-sm font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors">OPERATIONAL</button>
+</div>
+<!-- Message List -->
+<div class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Message Item: Active -->
+<div class="p-md flex gap-md bg-white active-glow cursor-pointer border-l-4 border-primary">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Marcus Chen" data-alt="A portrait of a male harbor master with a confident expression. The image has a professional, corporate tech feel, with soft office lighting and a neutral blue background. He is wearing a modern business-casual jacket. The aesthetic is clean, sharp, and trustworthy, matching a maritime logistics platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi7rPC2H1QCH_vrds1W_LIbGlcvt38GBItGVGigsnbfpwbAgc00xi6vM_1E4DAgJHiPN05-dbXLkuYHGVOxHpgV1JLz6uiiDTFgpgjkdxOfbZfST6y52KxTfz0853-Cypw5ThGIJr5r773g6Lheth8LztvGW2HDny92PXKExMG_9hv84ZHIl0K3XrFFKFihR2aC9RYTOS9Ci7gnWJ5jHFhDZOMKZSVQ4mCKKL8VH9BF3_imfKRTO9fG-bkNEd_-xFr4d0T_0pbeJZ0"/>
+</div>
+<div class="absolute bottom-0 right-0 w-3 h-3 bg-emerald-500 border-2 border-white rounded-full"></div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-headline-sm text-body-md font-bold truncate">Marcus Chen</span>
+<span class="text-label-md text-on-surface-variant">14:22</span>
+</div>
+<p class="text-body-sm text-primary font-medium truncate">Port 7 Clearance Confirmed</p>
+<div class="flex gap-xs mt-xs">
+<span class="bg-primary-container/10 text-primary-container text-[10px] px-xs py-[2px] rounded font-bold uppercase">Critical</span>
+</div>
+</div>
+</div>
+<!-- Message Item: Standard -->
+<div class="p-md flex gap-md hover:bg-surface-container transition-colors cursor-pointer border-l-4 border-transparent">
+<div class="relative flex-shrink-0">
+<div class="w-12 h-12 rounded-full bg-surface-container-highest overflow-hidden flex items-center justify-center text-primary font-bold">
+                                FT
+                            </div>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-headline-sm text-body-md truncate">Fleet Taskforce</span>
+<span class="text-label-md text-on-surface-variant">12:05</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">Sara: Ship-to-shore link established for Vessel A12</p>
+</div>
+</div>
+<!-- Alert Item -->
+<div class="p-md flex gap-md hover:bg-surface-container transition-colors cursor-pointer border-l-4 border-transparent bg-error-container/10">
+<div class="flex-shrink-0 w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-error" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+<div class="flex-1 min-w-0">
+<div class="flex justify-between items-baseline mb-xs">
+<span class="font-headline-sm text-body-md text-error truncate">System Alert</span>
+<span class="text-label-md text-error">09:15</span>
+</div>
+<p class="text-body-sm text-on-surface-variant truncate">Weather Warning: High swell at Pier 3</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Active Chat Window -->
+<section class="flex-1 flex flex-col bg-white">
+<!-- Chat Header -->
+<div class="px-lg h-20 flex items-center justify-between border-b border-outline-variant glass-panel">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary-fixed-dim overflow-hidden">
+<img alt="Marcus Chen" data-alt="A portrait of a male harbor master with a confident expression. The image has a professional, corporate tech feel, with soft office lighting and a neutral blue background. He is wearing a modern business-casual jacket. The aesthetic is clean, sharp, and trustworthy, matching a maritime logistics platform." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZB17G_7KHddvtwzzJhsxKcPJuRa0fKfoijP9nMNgdwuaDsKDwlB0NmKRa2oc6QAGlcugMA9zPgE_R6tbBuiYMa2Gbypbk5o8BlSIs9VjEHxVCU-v3sq4VY1u47HG7EgOcBVygN6o0jUa49aQ9pUJdNDUGoNCb3Db6Z1Wi6bJUNeflhAPW-r2SlkJa5oRAyCEHEFplE_OQxfrXCR_Yf5TO6vcujUGuohjEUqLAifWVnalysw8ZY4QbCMB94juFolV8b5KUNjxqDu0H"/>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm">Marcus Chen</h4>
+<p class="text-body-sm text-emerald-600 font-medium">Online • Terminal Operations Manager</p>
+</div>
+</div>
+<div class="flex gap-sm">
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">call</span>
+</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">videocam</span>
+</button>
+<button class="w-10 h-10 rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center border border-outline-variant">
+<span class="material-symbols-outlined text-on-surface-variant">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Messages Area -->
+<div class="flex-1 overflow-y-auto p-lg flex flex-col gap-lg custom-scrollbar bg-[radial-gradient(#e2e9f1_1px,transparent_1px)] [background-size:20px_20px]">
+<div class="flex justify-center">
+<span class="bg-surface-container px-sm py-xs rounded-full text-label-md text-on-surface-variant">TODAY, 14:10</span>
+</div>
+<!-- Received Message -->
+<div class="flex gap-md max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 mt-auto overflow-hidden">
+<img alt="Marcus Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxbH_SV4qXcmNZ3wSztegQK1gNUFrZIZ23THG7cOb7aLz5JKUU5bel0g1muUBdXnpL6-Xu5ToFjMT8Aag1fk_4Nhr5K9hnYtnNDxzrujWVeaA3RfrhBYKH1P7Y5fLLFNg9zQHeiZP4XqraHV1eTW8p92uWclfdluPyT4DeOkNG3Ewq6CG02qCYrHvF1DSngikzROyp9qM1evJzMDKHTQCata7hQkMBjanHqku3a_LxtcjlmWHhojs0VWNSr7LlSGcDoosZJdlplthD"/>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="p-md bg-surface-container rounded-xl rounded-bl-none text-body-md shadow-sm border border-outline-variant/30">
+                                Operator, we have a bottleneck at Docking Bay 4. Manifest 882-Alpha needs manual override. Can you check the vessel priority?
+                            </div>
+<span class="text-label-md text-on-surface-variant">14:15</span>
+</div>
+</div>
+<!-- Sent Message -->
+<div class="flex flex-col gap-xs max-w-[80%] self-end items-end">
+<div class="p-md message-gradient text-on-primary rounded-xl rounded-br-none text-body-md shadow-lg">
+                            Copy that, Marcus. Checking the priority manifest now. Sit rep shows 'The Azure' is currently holding priority. I'll divert the automated tugs.
+                        </div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-primary">done_all</span>
+<span class="text-label-md text-on-surface-variant">14:18</span>
+</div>
+</div>
+<!-- Operation Card in Chat -->
+<div class="flex gap-md max-w-[90%] self-center">
+<div class="p-lg bg-white border border-outline-variant rounded-xl shadow-xl w-full max-w-md">
+<div class="flex items-center gap-md mb-md">
+<span class="material-symbols-outlined text-primary-container text-[32px]">assignment</span>
+<h5 class="font-headline-sm text-body-lg font-bold">Operational Update: Terminal 4</h5>
+</div>
+<div class="space-y-sm mb-lg">
+<div class="flex justify-between border-b border-outline-variant pb-xs">
+<span class="text-on-surface-variant">Vessel ID:</span>
+<span class="font-label-md">AZURE-X882</span>
+</div>
+<div class="flex justify-between border-b border-outline-variant pb-xs">
+<span class="text-on-surface-variant">Status:</span>
+<span class="text-primary font-bold">Override Requested</span>
+</div>
+</div>
+<button class="w-full py-sm bg-primary-container text-on-primary rounded-lg font-bold hover:bg-primary transition-all">APPROVE OVERRIDE</button>
+</div>
+</div>
+<!-- Received Message -->
+<div class="flex gap-md max-w-[80%]">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest flex-shrink-0 mt-auto overflow-hidden">
+<img alt="Marcus Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDjdILv8zZXdShVP-7TMgNLtIPlfKI3iXyHQ32XXn28D_8h2Cg4efk884NXW70b8mYJq-480Mgk6HMJlguZ3bzTsQDnB0wRWblNyeG0RSZ6VFh_xGVZBWvgTbmhjMnXWSDSpyM8nsyajsNMeWz3Tl4eIe3k_IGXvvJgO5jSkqKwNGCJeVczyxdZlAQXhadSW9PhOYY-6_EcvswoGhczZYD2GxkpKTRsG4iFPQVrsW4hkW8_KEmdIZWdXBnjGFyhyL08eE3LOL7-cj6H"/>
+</div>
+<div class="flex flex-col gap-xs">
+<div class="p-md bg-surface-container rounded-xl rounded-bl-none text-body-md shadow-sm border border-outline-variant/30">
+                                Perfect. Port 7 Clearance Confirmed on my end too. Keep me posted on the tug deployment.
+                            </div>
+<span class="text-label-md text-on-surface-variant">14:22</span>
+</div>
+</div>
+</div>
+<!-- Chat Input -->
+<div class="p-lg glass-panel border-t border-outline-variant">
+<div class="flex items-end gap-md bg-surface-container rounded-xl p-xs border border-outline-variant focus-within:ring-2 focus-within:ring-primary/20 transition-all">
+<div class="flex">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">attach_file</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined text-on-surface-variant">mood</span>
+</button>
+</div>
+<textarea class="flex-1 bg-transparent border-none focus:ring-0 py-sm resize-none text-body-md" placeholder="Write a message to Marcus Chen..." rows="1"></textarea>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary-container text-on-primary shadow-lg hover:shadow-primary/20 hover:-translate-y-px transition-all active:translate-y-0">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Notifications / Info Panel -->
+<section class="w-80 border-l border-outline-variant bg-surface overflow-y-auto custom-scrollbar hidden xl:flex flex-col">
+<div class="p-md">
+<h3 class="font-headline-sm text-headline-sm mb-lg">Fleet Directory</h3>
+<div class="space-y-lg">
+<!-- Staff Presence Group -->
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-md uppercase tracking-wider">Online Staff (12)</p>
+<div class="space-y-md">
+<div class="flex items-center gap-sm">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Sarah J." data-alt="A professional corporate portrait of a female operations coordinator. She is looking forward with a friendly and composed expression. The lighting is bright and modern, against a clean light-gray studio background. She is wearing a smart blazer. The style is clear, professional, and sophisticated, suitable for a logistics application." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiGc6nogp4h7IUN0xfh_BuldLdIrGvncGnSvN7qYlYYWKNeB9a-haKoUITFzlAblcBa4KhvVwxLiLDNay0TtnXcjIb8luLQr4y15lPlskxTs4FTBVAltj71GuVTsBcVNENmfzJHRxXhA7-mo8rGamYoPlxSeEkMTPYcrNDlhcH4K-BALRy4ZLAVLXnuXga2oyVLIePO9wWVLdiGpad2w8LxNRIQG9IY33ydkmNIPgizZsCR6wfzInIJYATd_0-9m_DNEDqiBi78WV2"/>
+</div>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold">Sarah Jenkins</p>
+<p class="text-body-sm text-on-surface-variant">Logistics Lead</p>
+</div>
+</div>
+<div class="flex items-center gap-sm">
+<div class="relative">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden">
+<img alt="Tom H." data-alt="A portrait of a male data analyst in a professional setting. He has a thoughtful expression and is wearing glasses. The scene is brightly lit with a tech-focused, minimal aesthetic. The background is a soft-focus office environment with blue-toned highlights, suggesting high-end data processing and fleet management." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqvC_4JJaPQoBonaf_D2Az9uZSICqJwkLsr5lwR95xb-65v3pIgPwAA_tJlsIgs6W65xmF3MAg5wTPiOa89ButsQdRtEsCoHyfv7V1Nkzz0LhKuhOXSJf18Ar8w6V2PIkUUCgs3OkdMhvRqa29tg5-3Ji1xEp5zaymZVI7wLiBidOFyIQa4i74QT5khVox1lhv3ge_G3Ibb0mWhbxhaQ6rw8zarBuL84Ry1JLr0Rd2XP9HFGzbo2XvYvXBg7mY0AH97WFjNPhPX6-Y"/>
+</div>
+<div class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full"></div>
+</div>
+<div>
+<p class="font-body-md text-body-md font-bold">Tom Henderson</p>
+<p class="text-body-sm text-on-surface-variant">Data Analyst</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Active Alerts -->
+<div class="p-md bg-tertiary-fixed text-on-tertiary-fixed rounded-xl border border-tertiary/20">
+<div class="flex items-center gap-sm mb-sm">
+<span class="material-symbols-outlined text-primary">info</span>
+<h4 class="font-headline-sm text-body-md font-bold">Today's Brief</h4>
+</div>
+<p class="text-body-sm mb-md">3 Vessels arriving within 2 hours. Terminal 4 is operating at 92% capacity.</p>
+<a class="text-label-md text-primary font-bold hover:underline" href="#">VIEW FULL REPORT</a>
+</div>
+<!-- Media Shared -->
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant mb-md uppercase tracking-wider">Shared Assets</p>
+<div class="grid grid-cols-2 gap-sm">
+<div class="aspect-square rounded-lg bg-surface-container-highest overflow-hidden relative group cursor-pointer">
+<img alt="Terminal 4 Photo" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A high-angle architectural photograph of a modern shipping container terminal. The geometric lines of the colorful containers create an organized, technical pattern. The lighting is late afternoon sun, casting long, dramatic shadows. The overall feel is industrial, precise, and high-tech, fitting for a maritime logistics dashboard." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAZ4VW3YJZ0XaTjfT9WEUl8mAAYcudhaeecD4vcX7VStCuNCoP7u2WnwbWOEp4wNVqDh2-QsQz2TEFefkhb2E-C3WVSyF8nNnJeGQNvZKiiYa1-KEDwQNLJ3aHD5GEplmNnA23xElbGwmD840b4NDA39OWZ6Dt5Xx42ulXdbrAj7o95TuBVbxsFAux68H04IvcXi01hKm9Fn5LNzqQ39HwXb-bS9hgya1hgO3AA9gkVWmRddZALCWEQbahpZAuaXoUAilNTlko7pJX"/>
+<div class="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<div class="aspect-square rounded-lg bg-surface-container-highest flex items-center justify-center border-2 border-dashed border-outline-variant hover:bg-surface-container transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-on-surface-variant">add</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script>
+        // Micro-interactions for the message input
+        const textarea = document.querySelector('textarea');
+        textarea.addEventListener('input', function() {
+            this.style.height = 'auto';
+            this.style.height = (this.scrollHeight) + 'px';
+            if(this.scrollHeight > 150) {
+                this.style.overflowY = 'scroll';
+                this.style.height = '150px';
+            } else {
+                this.style.overflowY = 'hidden';
+            }
+        });
+
+        // Search highlight effect
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+    </script>
+</body></html>

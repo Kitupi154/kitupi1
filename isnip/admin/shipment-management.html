@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ISNIS | Shipment Management</title>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: Inter & JetBrains Mono -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        /* Custom Scrollbar for the data table */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #c2c6d3;
+            border-radius: 10px;
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.8);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#004f7f",
+                        "surface-container-highest": "#dce3ec",
+                        "primary-fixed": "#d7e2ff",
+                        "on-background": "#151c22",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#98cbff",
+                        "surface-dim": "#d4dbe3",
+                        "secondary": "#5d5f5f",
+                        "tertiary-fixed": "#cfe5ff",
+                        "background": "#f6f9ff",
+                        "primary": "#00346f",
+                        "outline-variant": "#c2c6d3",
+                        "on-surface-variant": "#424751",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#255dad",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#9bbdff",
+                        "surface-variant": "#dce3ec",
+                        "primary-fixed-dim": "#abc7ff",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface": "#f6f9ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed": "#001b3f",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e2e9f1",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#f6f9ff",
+                        "outline": "#737783",
+                        "on-surface": "#151c22",
+                        "surface-container-low": "#eef4fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d33",
+                        "tertiary": "#00385c",
+                        "inverse-on-surface": "#ebf1fa",
+                        "primary-container": "#004a99",
+                        "on-tertiary-container": "#82c2ff",
+                        "inverse-surface": "#2a3138",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed-variant": "#004a77",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e8eef7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md overflow-x-hidden">
+<!-- Navigation Drawer (Shared Component Anchor) -->
+<aside class="fixed left-0 top-0 h-full z-50 flex flex-col py-xl bg-primary dark:bg-primary-container docked left-0 h-full w-[260px] shadow-xl dark:shadow-none bg-gradient-to-b from-primary to-tertiary dark:from-primary-container dark:to-tertiary-container hidden md:flex">
+<div class="px-lg mb-xl">
+<h1 class="font-headline-md text-headline-md text-on-primary font-bold">ISNIS Fleet</h1>
+<div class="mt-xl flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-on-primary/20 flex items-center justify-center overflow-hidden border border-on-primary/30">
+<img alt="Vessel Operator" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDW4YSYW9DkTyNlFotUzKGNhlld8xbHxzoTjh25k0TVvWE9CoSYtroTt4eJB0bs_ArUS1XATNhGxNUGL31Jl_uyD_KfTQ8Jcja86pCMR-gpWo9sfsNLtHBWztDm13xgBAjhpTnmADgA_bkxSCw-P06PMIv--l-r25Ja4inY9-XwVTfRUs0HKB9iU4f2XDQQEEBN8t1wazea8xuWipYLLclGhXZxdXwddEoKMDe87GZZAyOaaybW4fd9Gsk1ms-kabYdFQsH-WZQRHlZ"/>
+</div>
+<div>
+<p class="font-headline-sm text-headline-sm text-on-primary leading-tight">ISNIS Operator</p>
+<p class="font-label-md text-label-md text-on-primary/70">Fleet Command</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 px-0 flex flex-col gap-xs overflow-y-auto custom-scrollbar">
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<!-- Active Navigation Logic: Current Page is Shipments -->
+<div class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200">
+<span class="material-symbols-outlined" data-icon="local_shipping">local_shipping</span>
+<span class="font-body-md text-body-md">Shipments</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="sailing">sailing</span>
+<span class="font-body-md text-body-md">Vessel Tracking</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="font-body-md text-body-md">Maps</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="forum">forum</span>
+<span class="font-body-md text-body-md">Messages</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-body-md text-body-md">Notifications</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="assessment">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</div>
+<div class="mt-auto pt-lg border-t border-on-primary/10">
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="font-body-md text-body-md">Profile</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md cursor-pointer active:scale-95 transition-all duration-200 hover:bg-on-primary/5">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</div>
+</div>
+</nav>
+<div class="px-md mt-lg">
+<p class="text-[10px] text-on-primary/40 uppercase tracking-widest font-bold">V1.2.4 Build Final</p>
+</div>
+</aside>
+<!-- Top App Bar (Shared Component Anchor) -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline md:pl-[280px]">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined md:hidden text-primary cursor-pointer" data-icon="menu">menu</span>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold">Shipment Management</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden lg:flex items-center gap-md">
+<div class="flex items-center px-sm py-xs bg-surface-container-high rounded-full border border-outline-variant">
+<span class="material-symbols-outlined text-outline text-[18px]" data-icon="schedule">schedule</span>
+<span class="font-label-md text-label-md text-on-surface-variant ml-xs">UTC 14:22:10</span>
+</div>
+</div>
+<div class="flex items-center gap-sm cursor-pointer hover:bg-surface-container-high p-xs rounded-full transition-colors">
+<div class="w-8 h-8 rounded-full bg-primary-container overflow-hidden">
+<img alt="User profile photo" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB1xWxX9mF0XHTdS8Sos6s4oMR1oz0BBWanvhuhl67e6_0jdytV6anbvZ43mUIH43XEId4vUsvqLGROdyE9VBYTUEKpaOBR3wcJGcccQ94dIAY5lDWrRtQBj6vBeFmtses3QPoXX8ED0sXwq2DPgqyuFxGp8nlheaYiN-q-8F78YwzbTu4ebZlQXrv0jB9wuOQPTNkKgHHp8ZPHwf9gzDTSeNfnFRj0s28pJIruWWXRNUHczfzdI6kj0hNOATcTO18qZ_bUcAUr0bYj"/>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="md:ml-[260px] pt-16 min-h-screen">
+<div class="p-lg md:p-xl max-w-[1600px] mx-auto">
+<!-- Management Header / Controls -->
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-lg mb-xl bg-white p-lg rounded-xl shadow-sm border border-outline-variant">
+<div class="flex flex-col gap-xs">
+<h3 class="font-headline-md text-headline-md text-primary">Fleet Logistics Oversight</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time status monitoring for 1,284 active global shipments.</p>
+</div>
+<div class="flex flex-wrap items-center gap-md">
+<div class="relative flex-1 min-w-[280px]">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline" data-icon="search">search</span>
+<input class="w-full pl-xl pr-md py-sm bg-background border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary font-body-sm outline-none transition-all" placeholder="Search by tracking, vessel, or customer..." type="text"/>
+</div>
+<button class="flex items-center gap-sm px-md py-sm bg-surface-container-high border border-outline-variant rounded-lg font-body-md text-on-surface hover:bg-surface-container-highest transition-colors">
+<span class="material-symbols-outlined" data-icon="filter_list">filter_list</span>
+<span>Filters</span>
+</button>
+<button class="flex items-center gap-sm px-lg py-sm bg-primary-container text-on-primary rounded-lg font-headline-sm text-body-md hover:opacity-90 active:scale-95 transition-all shadow-md">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+<span>Add Shipment</span>
+</button>
+</div>
+</div>
+<!-- Dashboard Quick Stats (Asymmetric Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-lg mb-xl">
+<div class="md:col-span-1 bg-gradient-to-br from-primary to-primary-container p-lg rounded-xl text-on-primary shadow-lg flex flex-col justify-between overflow-hidden relative">
+<div class="relative z-10">
+<p class="font-label-md text-label-md opacity-70">TOTAL ACTIVE</p>
+<h4 class="font-display-lg text-display-lg mt-xs">842</h4>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-9xl opacity-10" data-icon="inventory_2" style="font-variation-settings: 'FILL' 1;">inventory_2</span>
+</div>
+<div class="md:col-span-1 bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">At Sea</p>
+<span class="material-symbols-outlined text-primary" data-icon="sailing">sailing</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg mt-sm">512</h4>
+</div>
+<p class="text-xs text-green-600 font-bold mt-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm" data-icon="trending_up">trending_up</span>
+                        +12% vs last month
+                    </p>
+</div>
+<div class="md:col-span-1 bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Pending Port</p>
+<span class="material-symbols-outlined text-tertiary" data-icon="anchor">anchor</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg mt-sm">219</h4>
+</div>
+<p class="text-xs text-on-surface-variant mt-sm">Expected within 48h</p>
+</div>
+<div class="md:col-span-1 bg-white p-lg rounded-xl border border-outline-variant shadow-sm flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant uppercase">Late Arrivals</p>
+<span class="material-symbols-outlined text-error" data-icon="warning">warning</span>
+</div>
+<h4 class="font-headline-lg text-headline-lg mt-sm">11</h4>
+</div>
+<button class="text-xs text-primary font-bold mt-sm underline text-left">View Manifests</button>
+</div>
+</div>
+<!-- Professional Rounded Data Table -->
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm overflow-hidden">
+<div class="overflow-x-auto custom-scrollbar">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container text-on-surface-variant border-b border-outline-variant">
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Tracking Number</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Customer Name</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Cargo Type</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Container No.</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Weight</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Vessel</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Route (Dep/Dest)</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Status</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap">Schedule (Dep/ETA)</th>
+<th class="px-lg py-md font-label-md text-label-md whitespace-nowrap text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<span class="font-label-md text-primary font-bold select-all">TRK-88219-UX</span>
+</td>
+<td class="px-lg py-md font-body-sm">Global Dynamics Inc.</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="font-body-sm">Industrial Machinery</span>
+</div>
+</td>
+<td class="px-lg py-md font-label-md text-label-md text-on-surface-variant">MSKU 429188-4</td>
+<td class="px-lg py-md font-body-sm">24,500 kg</td>
+<td class="px-lg py-md font-body-sm font-semibold">Ever Green Horizon</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-sm">Port of Singapore</span>
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="arrow_downward">arrow_downward</span>
+<span class="font-body-sm">Port of Rotterdam</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-green-100 text-green-700 font-label-md text-[10px] uppercase font-bold border border-green-200">In Transit</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="event">event</span>
+<span class="text-[11px] font-label-md text-on-surface-variant">OCT 12, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="timer">timer</span>
+<span class="text-[11px] font-label-md text-primary font-bold">NOV 04, 2023</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-xs text-outline hover:text-primary" title="View"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+<button class="p-xs text-outline hover:text-primary" title="Edit"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-xs text-outline hover:text-tertiary" title="Update Status"><span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span></button>
+<button class="p-xs text-outline hover:text-error" title="Delete"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<span class="font-label-md text-primary font-bold select-all">TRK-10293-LY</span>
+</td>
+<td class="px-lg py-md font-body-sm">Nordic Retail Group</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="inventory">inventory</span>
+<span class="font-body-sm">Consumer Goods</span>
+</div>
+</td>
+<td class="px-lg py-md font-label-md text-label-md text-on-surface-variant">ZIMU 992831-0</td>
+<td class="px-lg py-md font-body-sm">18,200 kg</td>
+<td class="px-lg py-md font-body-sm font-semibold">Oceanic Pride</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-sm">Shanghai Port</span>
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="arrow_downward">arrow_downward</span>
+<span class="font-body-sm">Los Angeles (POLA)</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-blue-100 text-blue-700 font-label-md text-[10px] uppercase font-bold border border-blue-200">Scheduled</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="event">event</span>
+<span class="text-[11px] font-label-md text-on-surface-variant">OCT 28, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-primary" data-icon="timer">timer</span>
+<span class="text-[11px] font-label-md text-primary font-bold">NOV 12, 2023</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-xs text-outline hover:text-primary" title="View"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+<button class="p-xs text-outline hover:text-primary" title="Edit"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-xs text-outline hover:text-tertiary" title="Update Status"><span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span></button>
+<button class="p-xs text-outline hover:text-error" title="Delete"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 (Delayed) -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<span class="font-label-md text-primary font-bold select-all">TRK-55410-ZZ</span>
+</td>
+<td class="px-lg py-md font-body-sm">TechNova Solutions</td>
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-on-surface-variant text-[18px]" data-icon="memory">memory</span>
+<span class="font-body-sm">Electronics</span>
+</div>
+</td>
+<td class="px-lg py-md font-label-md text-label-md text-on-surface-variant">TGHU 128477-9</td>
+<td class="px-lg py-md font-body-sm">5,800 kg</td>
+<td class="px-lg py-md font-body-sm font-semibold">Pacific Voyager</td>
+<td class="px-lg py-md">
+<div class="flex flex-col">
+<span class="font-body-sm">Busan New Port</span>
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="arrow_downward">arrow_downward</span>
+<span class="font-body-sm">Vancouver Harbor</span>
+</div>
+</td>
+<td class="px-lg py-md">
+<span class="px-sm py-1 rounded-full bg-red-100 text-red-700 font-label-md text-[10px] uppercase font-bold border border-red-200">Delayed</span>
+</td>
+<td class="px-lg py-md">
+<div class="flex flex-col gap-1">
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-outline" data-icon="event">event</span>
+<span class="text-[11px] font-label-md text-on-surface-variant">OCT 05, 2023</span>
+</div>
+<div class="flex items-center gap-xs">
+<span class="material-symbols-outlined text-[14px] text-error" data-icon="error">error</span>
+<span class="text-[11px] font-label-md text-error font-bold">OCT 22, 2023</span>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<div class="flex items-center justify-center gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-xs text-outline hover:text-primary" title="View"><span class="material-symbols-outlined" data-icon="visibility">visibility</span></button>
+<button class="p-xs text-outline hover:text-primary" title="Edit"><span class="material-symbols-outlined" data-icon="edit">edit</span></button>
+<button class="p-xs text-outline hover:text-tertiary" title="Update Status"><span class="material-symbols-outlined" data-icon="sync_alt">sync_alt</span></button>
+<button class="p-xs text-outline hover:text-error" title="Delete"><span class="material-symbols-outlined" data-icon="delete">delete</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination Footer -->
+<div class="px-lg py-md bg-surface-container border-t border-outline-variant flex items-center justify-between">
+<p class="font-label-md text-label-md text-on-surface-variant">Showing 1 to 15 of 842 entries</p>
+<div class="flex items-center gap-xs">
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-white text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-primary bg-primary text-on-primary font-label-md text-label-md">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-white text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-white text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md">3</button>
+<span class="px-xs text-outline">...</span>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-white text-on-surface-variant hover:border-primary hover:text-primary font-label-md text-label-md">56</button>
+<button class="w-8 h-8 flex items-center justify-center rounded border border-outline-variant bg-white text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[18px]" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Visual Insight Section -->
+<div class="mt-xl grid grid-cols-1 lg:grid-cols-3 gap-lg">
+<div class="lg:col-span-2 bg-white rounded-xl border border-outline-variant shadow-sm p-lg overflow-hidden relative min-h-[300px]">
+<div class="flex items-center justify-between mb-lg">
+<h4 class="font-headline-sm text-headline-sm text-primary">Global Transit Density</h4>
+<div class="flex items-center gap-sm">
+<span class="flex items-center gap-1 text-[10px] font-bold text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary"></span> HIGH
+                            </span>
+<span class="flex items-center gap-1 text-[10px] font-bold text-on-surface-variant">
+<span class="w-2 h-2 rounded-full bg-primary/20"></span> LOW
+                            </span>
+</div>
+</div>
+<!-- Mock Map Container -->
+<div class="absolute inset-0 top-16 bg-surface-container rounded-b-xl">
+<div class="w-full h-full relative overflow-hidden grayscale opacity-40">
+<img class="w-full h-full object-cover" data-alt="A detailed, high-contrast monochrome satellite map of the world showing oceanic shipping routes highlighted in a vibrant cobalt blue. The style is modern and high-tech, with minimal labels and a focus on visual density. Small pulsing light-mode glowing dots represent active vessel positions across the Atlantic and Pacific oceans. The lighting is clean and professional, matching a corporate logistics dashboard aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4hFUF0XbAgI9ZClfZJaLfSRQlQqR3_TavUdM7OPWv4p4os_LOUtaBa7E_NaIaSck_MTm0ZeYzkmGfs4y5TwlYu2vzdp351avImMYfY1oQMgtd6pe2k9X_HDaYIhWY9SnFoEvXhw5t3FSYlZIeejtPJfA8Uy4VXqF97r3j88QeHzsqqFvL2rz2K2uV51hmb34or8it9v_uJWtVSVkCvKpzchug_5YxZAUxvrcw2LyRPr0J5cx34NWh5WsVJITl3ZHRPz4c1WATA3k9"/>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="p-md glass-effect border border-white/40 rounded-lg shadow-xl max-w-xs text-center">
+<span class="material-symbols-outlined text-primary mb-sm text-3xl" data-icon="explore">explore</span>
+<p class="font-body-sm text-body-sm font-semibold">Interactive Tracking Live</p>
+<p class="text-[11px] text-on-surface-variant mt-1">Switch to Satellite view for real-time vessel imagery.</p>
+<button class="mt-md w-full py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md">Open Full Map</button>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:col-span-1 flex flex-col gap-lg">
+<div class="bg-white rounded-xl border border-outline-variant shadow-sm p-lg">
+<h4 class="font-headline-sm text-headline-sm text-primary mb-md">Quick Logs</h4>
+<div class="space-y-md">
+<div class="flex gap-md">
+<div class="w-2 h-2 rounded-full bg-blue-500 mt-2 shrink-0"></div>
+<div>
+<p class="font-body-sm text-body-sm"><span class="font-bold">TRK-88219-UX</span> departed Singapore</p>
+<p class="text-[10px] text-outline font-label-md">2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-2 h-2 rounded-full bg-green-500 mt-2 shrink-0"></div>
+<div>
+<p class="font-body-sm text-body-sm">Customs cleared for <span class="font-bold">TRK-10293-LY</span></p>
+<p class="text-[10px] text-outline font-label-md">4 hours ago</p>
+</div>
+</div>
+<div class="flex gap-md">
+<div class="w-2 h-2 rounded-full bg-red-500 mt-2 shrink-0"></div>
+<div>
+<p class="font-body-sm text-body-sm">Weather delay: <span class="font-bold">Pacific Voyager</span></p>
+<p class="text-[10px] text-outline font-label-md">6 hours ago</p>
+</div>
+</div>
+</div>
+<button class="w-full mt-lg py-sm border border-outline-variant rounded-lg text-on-surface-variant font-label-md text-label-md hover:bg-surface-container transition-colors">View All Logs</button>
+</div>
+<div class="bg-primary text-on-primary rounded-xl p-lg flex items-center justify-between shadow-lg">
+<div>
+<p class="font-headline-sm text-headline-sm">Fleet Status</p>
+<p class="font-body-sm opacity-80">All systems operational</p>
+</div>
+<div class="flex items-center gap-xs">
+<div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+<span class="font-label-md text-label-md">100%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Mobile Navigation Shell (Bottom Bar) -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full bg-surface border-t border-outline-variant flex justify-around items-center h-16 z-50 px-md">
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="text-[10px] font-bold">DASH</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" data-icon="local_shipping" style="font-variation-settings: 'FILL' 1;">local_shipping</span>
+<span class="text-[10px] font-bold">SHIPS</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="sailing">sailing</span>
+<span class="text-[10px] font-bold">FLEET</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px] font-bold">ME</span>
+</div>
+</nav>
+<script>
+        // Micro-interaction for table rows
+        document.querySelectorAll('tbody tr').forEach(row => {
+            row.addEventListener('click', () => {
+                // Potential expansion or detail view logic
+                console.log('Row clicked for detail view');
+            });
+        });
+
+        // Search highlight mock logic
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('input', (e) => {
+            const val = e.target.value.toLowerCase();
+            document.querySelectorAll('tbody tr').forEach(row => {
+                const text = row.innerText.toLowerCase();
+                row.style.display = text.includes(val) ? '' : 'none';
+            });
+        });
+    </script>
+</body></html>

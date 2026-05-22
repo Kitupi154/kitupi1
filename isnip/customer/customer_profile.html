@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<title>ISNIS | Customer Profile Management</title>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#004f7f",
+                        "surface-container-highest": "#dce3ec",
+                        "primary-fixed": "#d7e2ff",
+                        "on-background": "#151c22",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#98cbff",
+                        "surface-dim": "#d4dbe3",
+                        "secondary": "#5d5f5f",
+                        "tertiary-fixed": "#cfe5ff",
+                        "background": "#f6f9ff",
+                        "primary": "#00346f",
+                        "outline-variant": "#c2c6d3",
+                        "on-surface-variant": "#424751",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#255dad",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#9bbdff",
+                        "surface-variant": "#dce3ec",
+                        "primary-fixed-dim": "#abc7ff",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface": "#f6f9ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed": "#001b3f",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e2e9f1",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#f6f9ff",
+                        "outline": "#737783",
+                        "on-surface": "#151c22",
+                        "surface-container-low": "#eef4fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d33",
+                        "tertiary": "#00385c",
+                        "inverse-on-surface": "#ebf1fa",
+                        "primary-container": "#004a99",
+                        "on-tertiary-container": "#82c2ff",
+                        "inverse-surface": "#2a3138",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed-variant": "#004a77",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e8eef7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { background-color: #f6f9ff; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #dfe0e0; border-radius: 10px; }
+        .glass-panel {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="font-body-md text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer active:opacity-80">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ISNIS Navigation</h1>
+</div>
+<div class="flex items-center gap-md">
+<nav class="hidden md:flex gap-lg">
+<span class="font-label-md text-label-md text-on-surface-variant dark:text-outline cursor-pointer hover:bg-surface-container-high transition-colors px-2 py-1 rounded">DASHBOARD</span>
+<span class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold cursor-pointer hover:bg-surface-container-high transition-colors px-2 py-1 rounded">PROFILE</span>
+</nav>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-container cursor-pointer active:opacity-80">
+<img alt="User profile photo" class="w-full h-full object-cover" data-alt="A professional portrait of a vessel fleet manager in a modern maritime office. He is wearing a crisp white shirt and navy blazer, looking confident and approachable. The background is softly blurred, showing high-tech digital displays of global shipping lanes. The lighting is bright and clean, emphasizing a corporate and high-tech professional atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClg0EzWoqMCSaS5FEtncQaY3wdmKxTnM7i-0KGriUpQ4OAKgVTy7ahBOoBfRKwFBU3a6szCeI-XU9Fx3s5-po2HDgMiroy_k-wOmpayBwpYfNKd2gHSMEnXN5AVDyO3i9ElE7wCwme36OP_oEO7ZwdQ9-X1iAMLZzjDoxCvMwQ7QVbx8bIRiFSD3vj0UBCExwfezKM8wVCteANXUQEfdFu-7e8u0QVtopPgefdRR0zzYUyYCgo_T04q2LPc_2lVg9t2Id9qAcZMR3B"/>
+</div>
+</div>
+</header>
+<!-- NavigationDrawer -->
+<aside class="fixed left-0 top-0 h-full z-50 flex flex-col py-xl bg-primary dark:bg-primary-container shadow-xl dark:shadow-none w-[260px] bg-gradient-to-b from-primary to-tertiary dark:from-primary-container dark:to-tertiary-container transform -translate-x-full lg:translate-x-0 transition-transform duration-300">
+<div class="px-xl mb-xl flex items-center gap-md">
+<div class="w-12 h-12 rounded-lg bg-surface-container-lowest/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">sailing</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-primary">ISNIS</h2>
+<p class="font-label-md text-label-md text-on-primary/60">Fleet Command</p>
+</div>
+</div>
+<nav class="flex-1 space-y-1">
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md mx-md rounded hover:bg-on-primary/5 transition-all duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md mx-md rounded hover:bg-on-primary/5 transition-all duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-md text-body-md">Shipments</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md mx-md rounded hover:bg-on-primary/5 transition-all duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">sailing</span>
+<span class="font-body-md text-body-md">Vessel Tracking</span>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md mx-md cursor-pointer active:scale-95">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-body-md text-body-md">Profile</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary py-sm px-md mx-md rounded hover:bg-on-primary/5 transition-all duration-200 cursor-pointer active:scale-95">
+<span class="material-symbols-outlined">settings</span>
+<span class="font-body-md text-body-md">Settings</span>
+</div>
+</nav>
+<div class="mt-auto px-md pt-xl border-t border-on-primary/10">
+<div class="flex items-center gap-sm px-sm py-md">
+<div class="w-8 h-8 rounded-full bg-tertiary-fixed-dim/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary text-sm">info</span>
+</div>
+<span class="font-label-md text-label-md text-on-primary/60">V1.2.4</span>
+</div>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="lg:ml-[260px] pt-16 min-h-screen px-margin-mobile md:px-margin-desktop py-lg">
+<div class="max-w-6xl mx-auto">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-lg mb-xl">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Customer Profile</h2>
+<p class="font-body-md text-on-surface-variant">Manage your corporate credentials and shipping preferences.</p>
+</div>
+<div class="flex gap-sm">
+<button class="flex items-center gap-sm px-lg py-sm border border-primary text-primary font-body-md rounded-lg hover:bg-primary/5 transition-colors active:opacity-80">
+<span class="material-symbols-outlined text-sm">edit</span>
+                        Edit Profile
+                    </button>
+<button class="flex items-center gap-sm px-lg py-sm bg-primary-container text-on-primary font-body-md rounded-lg hover:opacity-90 transition-all active:scale-95 shadow-md">
+                        Update Information
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Profile Identity Card -->
+<div class="md:col-span-4 flex flex-col gap-lg">
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col items-center text-center mb-lg">
+<div class="relative mb-md">
+<img alt="Main Profile Photo" class="w-32 h-32 rounded-full object-cover border-4 border-surface shadow-lg" data-alt="A clean, minimalist studio portrait of a corporate executive against a neutral light gray background. The subject is wearing professional business attire with a focus on sharp details and clarity. The lighting is soft and even, highlighting a trustworthy and efficient professional image consistent with high-end maritime logistics software." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC-5oEzavABJTU3wt6qGtN-Jw9tWhZD9zAZFOgPgWIbWvquGhQI6iFFkpf3UL0AUMcC64aHrdENUTwleuBlJLNoNf7yWP9FoBE5jg0NtcdBT_oh18jcgVgP7rrpPW847c4_boljWXwLW2DdrPb8KPqWKj28FTL9r0aIqV6KcbhmYRjNMWGc1mSzk0loa8_lbdUBp_4k6FZan1BS-cMKY2nmaqBrF3dAg_AtqcjUNgU3p0mwefYWBzQddQM4gu4E5JpMaiWKwuBj2Pa"/>
+<button class="absolute bottom-1 right-1 bg-primary text-on-primary p-xs rounded-full shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-base">photo_camera</span>
+</button>
+</div>
+<h3 class="font-headline-sm text-headline-sm text-primary">Marcus V. Sterling</h3>
+<p class="font-body-sm text-on-surface-variant font-medium">Head of Operations</p>
+</div>
+<div class="space-y-md">
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">apartment</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline">COMPANY</p>
+<p class="font-body-md text-on-surface font-semibold">Global Maritime Logistics Ltd.</p>
+</div>
+</div>
+<div class="flex items-center gap-md">
+<div class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-sm">verified_user</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-outline">ACCOUNT STATUS</p>
+<span class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-bold bg-green-100 text-green-800">PREMIUM</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Quick Settings Card -->
+<div class="bg-primary text-on-primary p-lg rounded-xl shadow-xl overflow-hidden relative">
+<div class="absolute top-0 right-0 opacity-10 -mr-8 -mt-8">
+<span class="material-symbols-outlined text-[120px]">settings_suggest</span>
+</div>
+<h4 class="font-headline-sm text-headline-sm mb-md relative z-10">Account Settings</h4>
+<div class="space-y-sm relative z-10">
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md">Email Notifications</span>
+<div class="w-10 h-5 bg-on-primary/30 rounded-full relative transition-colors group-hover:bg-on-primary/40">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-on-primary rounded-full"></div>
+</div>
+</label>
+<label class="flex items-center justify-between group cursor-pointer">
+<span class="font-body-md">Two-Factor Auth</span>
+<div class="w-10 h-5 bg-on-primary/30 rounded-full relative transition-colors">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-on-primary/60 rounded-full"></div>
+</div>
+</label>
+</div>
+<button class="w-full mt-lg py-sm bg-on-primary text-primary font-bold rounded-lg hover:bg-opacity-90 transition-all">Manage Security</button>
+</div>
+</div>
+<!-- Detailed Information & History -->
+<div class="md:col-span-8 flex flex-col gap-lg">
+<!-- Information Form -->
+<div class="bg-surface-container-lowest border border-outline-variant p-lg rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.04)]">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-lg">General Information</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-lg">
+<div class="space-y-xs">
+<label class="font-body-sm font-semibold text-on-surface-variant">Full Name</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" readonly="" type="text" value="Marcus V. Sterling"/>
+</div>
+<div class="space-y-xs">
+<label class="font-body-sm font-semibold text-on-surface-variant">Email Address</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" type="email" value="m.sterling@gml-logistics.com"/>
+</div>
+<div class="space-y-xs">
+<label class="font-body-sm font-semibold text-on-surface-variant">Phone Number</label>
+<input class="w-full px-md py-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" type="tel" value="+44 (20) 7946 0148"/>
+</div>
+<div class="space-y-xs">
+<label class="font-body-sm font-semibold text-on-surface-variant">Timezone</label>
+<select class="w-full px-md py-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md">
+<option>London (GMT +00:00)</option>
+<option>New York (EST -05:00)</option>
+<option>Singapore (SGT +08:00)</option>
+</select>
+</div>
+<div class="md:col-span-2 space-y-xs">
+<label class="font-body-sm font-semibold text-on-surface-variant">Shipping Address</label>
+<textarea class="w-full px-md py-sm border border-outline-variant rounded-lg focus:ring-2 focus:ring-primary focus:border-primary outline-none transition-all font-body-md" rows="2">148 Maritime Square, Docklands, London, E14 9SX, United Kingdom</textarea>
+</div>
+</div>
+</div>
+<!-- Shipment History Table -->
+<div class="bg-surface-container-lowest border border-outline-variant rounded-xl shadow-[0_4px_12px_rgba(0,0,0,0.04)] overflow-hidden">
+<div class="p-lg border-b border-outline-variant flex justify-between items-center">
+<h3 class="font-headline-sm text-headline-sm text-primary">Recent Shipment History</h3>
+<button class="text-primary font-body-sm font-semibold hover:underline">View All Records</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead class="bg-surface-container-low">
+<tr>
+<th class="px-lg py-md font-label-md text-label-md text-outline">VESSEL / ID</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline">DESTINATION</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline">STATUS</th>
+<th class="px-lg py-md font-label-md text-label-md text-outline text-right">DATE</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">sailing</span>
+<div>
+<p class="font-body-md font-semibold">Atlantic Voyager</p>
+<p class="font-label-md text-outline">#SH-29041</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-md">Rotterdam, NL</p>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-green-100 text-green-700 text-xs font-bold rounded">DELIVERED</span>
+</td>
+<td class="px-lg py-md text-right font-body-md text-on-surface-variant">Oct 12, 2023</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">local_shipping</span>
+<div>
+<p class="font-body-md font-semibold">North Star</p>
+<p class="font-label-md text-outline">#SH-29055</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-md">Hamburg, DE</p>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded">IN TRANSIT</span>
+</td>
+<td class="px-lg py-md text-right font-body-md text-on-surface-variant">Oct 14, 2023</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-lg py-md">
+<div class="flex items-center gap-sm">
+<span class="material-symbols-outlined text-primary-container">sailing</span>
+<div>
+<p class="font-body-md font-semibold">Pacific Queen</p>
+<p class="font-label-md text-outline">#SH-29088</p>
+</div>
+</div>
+</td>
+<td class="px-lg py-md">
+<p class="font-body-md">Singapore, SG</p>
+</td>
+<td class="px-lg py-md">
+<span class="px-2 py-1 bg-secondary-container text-on-secondary-container text-xs font-bold rounded">PENDING</span>
+</td>
+<td class="px-lg py-md text-right font-body-md text-on-surface-variant">Oct 15, 2023</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- FAB (Floating Action Button) - Rendered only on main view screens -->
+<button class="fixed bottom-lg right-lg w-16 h-16 bg-primary-container text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">add</span>
+</button>
+<script>
+        // Simple micro-interaction for form focus states and transitions
+        document.querySelectorAll('input, select, textarea').forEach(el => {
+            el.addEventListener('focus', () => {
+                el.parentElement.classList.add('scale-[1.01]');
+            });
+            el.addEventListener('blur', () => {
+                el.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Mobile Menu Toggle logic
+        const menuBtn = document.querySelector('header .material-symbols-outlined');
+        const sidebar = document.querySelector('aside');
+        
+        menuBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth < 1024 && !sidebar.contains(e.target) && !menuBtn.contains(e.target)) {
+                sidebar.classList.add('-translate-x-full');
+            }
+        });
+    </script>
+</body></html>

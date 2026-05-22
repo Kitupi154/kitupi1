@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ISNIS - Shipment Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#004f7f",
+                        "surface-container-highest": "#dce3ec",
+                        "primary-fixed": "#d7e2ff",
+                        "on-background": "#151c22",
+                        "on-primary-fixed-variant": "#00458f",
+                        "on-error-container": "#93000a",
+                        "tertiary-fixed-dim": "#98cbff",
+                        "surface-dim": "#d4dbe3",
+                        "secondary": "#5d5f5f",
+                        "tertiary-fixed": "#cfe5ff",
+                        "background": "#f6f9ff",
+                        "primary": "#00346f",
+                        "outline-variant": "#c2c6d3",
+                        "on-surface-variant": "#424751",
+                        "on-tertiary": "#ffffff",
+                        "surface-tint": "#255dad",
+                        "on-secondary-fixed": "#1a1c1c",
+                        "error-container": "#ffdad6",
+                        "on-primary-container": "#9bbdff",
+                        "surface-variant": "#dce3ec",
+                        "primary-fixed-dim": "#abc7ff",
+                        "secondary-fixed-dim": "#c6c6c7",
+                        "surface": "#f6f9ff",
+                        "secondary-container": "#dfe0e0",
+                        "on-secondary-container": "#616363",
+                        "on-primary-fixed": "#001b3f",
+                        "secondary-fixed": "#e2e2e2",
+                        "surface-container-high": "#e2e9f1",
+                        "on-secondary-fixed-variant": "#454747",
+                        "surface-bright": "#f6f9ff",
+                        "outline": "#737783",
+                        "on-surface": "#151c22",
+                        "surface-container-low": "#eef4fd",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001d33",
+                        "tertiary": "#00385c",
+                        "inverse-on-surface": "#ebf1fa",
+                        "primary-container": "#004a99",
+                        "on-tertiary-container": "#82c2ff",
+                        "inverse-surface": "#2a3138",
+                        "on-error": "#ffffff",
+                        "inverse-primary": "#abc7ff",
+                        "on-tertiary-fixed-variant": "#004a77",
+                        "on-primary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container": "#e8eef7"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "gutter": "16px",
+                        "xs": "4px",
+                        "sm": "12px",
+                        "base": "8px",
+                        "margin-desktop": "32px",
+                        "md": "16px",
+                        "xl": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "headline-sm": ["Inter"],
+                        "headline-lg": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Inter"],
+                        "body-md": ["Inter"],
+                        "display-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "600"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #004A99;
+        }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #004A99; border-radius: 4px; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-body-md min-h-screen">
+<!-- Top Navigation -->
+<header class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-primary cursor-pointer">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ISNIS Navigation</h1>
+</div>
+<div class="flex items-center gap-lg">
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant dark:text-outline font-label-md text-label-md hover:text-primary transition-colors" href="#">DASHBOARD</a>
+<a class="text-primary dark:text-primary-fixed font-bold font-label-md text-label-md" href="#">SHIPMENTS</a>
+<a class="text-on-surface-variant dark:text-outline font-label-md text-label-md hover:text-primary transition-colors" href="#">VESSELS</a>
+</nav>
+<img alt="User profile photo" class="w-8 h-8 rounded-full border border-outline-variant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_5yZm9XlqTFuHFfWu-BeocF6S4IkuiKXcIAXSSF72CBxLOoVTYQB40aLG4x5EGKeFrXsIxKuM22gVatc6FyGI5JyZ8v4DRVMwqgrPpMHd9Z6bWCRamWbsx2ZguQDHSZ-yk9erEB38aSL2K-2u9ze9JaORXYtGrSl3V2ZTkzwndE4gEJ-8uqL78OGQEWr7EqXHbthh_deGYVVT5HCg9lwHBWnCqOV7w420ZxLhhYUOKP3LCupvL9xWiW53OExgBvCVjvapokRlBvDW"/>
+</div>
+</header>
+<!-- Side Navigation Drawer -->
+<aside class="fixed left-0 top-0 h-full z-50 flex flex-col py-xl bg-primary dark:bg-primary-container docked left-0 h-full w-[260px] shadow-xl dark:shadow-none transition-transform duration-300 transform -translate-x-full lg:translate-x-0 bg-gradient-to-b from-primary to-tertiary dark:from-primary-container dark:to-tertiary-container">
+<div class="px-lg mb-xl flex items-center gap-sm">
+<div class="w-10 h-10 rounded-lg bg-surface-container-lowest/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-primary">sailing</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-on-primary">ISNIS</h2>
+<p class="text-[10px] text-on-primary/60 font-label-md">FLEET COMMAND V1.2.4</p>
+</div>
+</div>
+<div class="flex flex-col gap-xs flex-grow overflow-y-auto px-sm">
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="font-body-md text-body-md">Dashboard</span>
+</div>
+<div class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-r-lg">
+<span class="material-symbols-outlined">local_shipping</span>
+<span class="font-body-md text-body-md">Shipments</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">sailing</span>
+<span class="font-body-md text-body-md">Vessel Tracking</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">map</span>
+<span class="font-body-md text-body-md">Maps</span>
+</div>
+<div class="mt-xl border-t border-on-primary/10 pt-xl">
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">forum</span>
+<span class="font-body-md text-body-md">Messages</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">notifications</span>
+<span class="font-body-md text-body-md">Notifications</span>
+</div>
+<div class="flex items-center gap-sm text-on-primary/70 hover:bg-on-primary/5 hover:text-on-primary py-sm px-md transition-all duration-200 cursor-pointer rounded-lg">
+<span class="material-symbols-outlined">assessment</span>
+<span class="font-body-md text-body-md">Reports</span>
+</div>
+</div>
+</div>
+<div class="mt-auto px-lg py-md border-t border-on-primary/10 flex items-center gap-md">
+<img alt="Vessel Operator" class="w-10 h-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd_6zaQ6VAIP5H-03f_4A6nr2AVguu0mEqx1fAvdPVsYnNX82vgOmGpyDm-xVKBFaAs3CRXHs-wMm3x-UWOGVD5iet_rKB3ZUuMLbWc1HYwC6ut0l113-3OarWIReAUHI4raGWVm89oP_WrXcJtqMtNEhXVq9KyPM0ouSxL2L-18sm9AmagkHJtXKGQu7k3umBJT8-1nIAW5ERHwMylLLFbz_woBVmtg9ZckV4OAk7tv3uNDwrE4PD2HOhmmcGJ9qwuVlpfvD8u_Wh"/>
+<div class="overflow-hidden">
+<p class="font-body-md text-body-md text-on-primary truncate">ISNIS Operator</p>
+<p class="text-[12px] text-on-primary/60">Fleet Command</p>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="lg:pl-[260px] pt-16 min-h-screen">
+<div class="p-lg md:p-xl max-w-6xl mx-auto">
+<!-- Breadcrumbs -->
+<div class="flex items-center gap-xs text-on-surface-variant mb-md font-label-md text-label-md">
+<span>SHIPMENTS</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary font-bold">NEW REGISTRATION</span>
+</div>
+<!-- Page Title -->
+<div class="mb-xl">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-xs">Register New Shipment</h2>
+<p class="text-on-surface-variant font-body-md">Initialize a new cargo manifest and logistics route for maritime dispatch.</p>
+</div>
+<!-- Form Card -->
+<form class="bg-surface-container-lowest rounded-xl border border-outline-variant shadow-[0_4px_12px_rgba(0,0,0,0.04)] overflow-hidden">
+<!-- Section 1: Customer & Cargo Details -->
+<div class="p-lg md:p-xl">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined">inventory_2</span>
+                        Cargo Specifications
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-xl gap-y-lg">
+<!-- Customer Selection -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Customer Selection</label>
+<div class="relative group">
+<select class="w-full h-12 bg-surface-container px-md pr-xl rounded-lg border border-outline-variant text-body-md form-input-focus appearance-none transition-all cursor-pointer">
+<option>Select Global Client...</option>
+<option>Blue Water Logistics Ltd.</option>
+<option>Oceanic Trade Partners</option>
+<option>Global Freight Solutions</option>
+</select>
+<span class="material-symbols-outlined absolute right-md top-1/2 -translate-y-1/2 pointer-events-none text-on-surface-variant">expand_more</span>
+</div>
+</div>
+<!-- Cargo Type -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Cargo Type</label>
+<select class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all">
+<option>Select Category...</option>
+<option>Hazardous Materials (Class 1-9)</option>
+<option>Refrigerated Goods</option>
+<option>Dry Bulk</option>
+<option>Automotive Vehicles</option>
+</select>
+</div>
+<!-- Cargo Description -->
+<div class="md:col-span-2 space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Cargo Description</label>
+<textarea class="w-full bg-surface-container px-md py-sm rounded-lg border border-outline-variant text-body-md form-input-focus transition-all resize-none" placeholder="Detailed description of goods, handling instructions, and safety protocols..." rows="3"></textarea>
+</div>
+<!-- Quantity -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Quantity (Units)</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" placeholder="0" type="number"/>
+<span class="absolute right-md top-1/2 -translate-y-1/2 font-label-md text-on-surface-variant">PCS</span>
+</div>
+</div>
+<!-- Weight -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Gross Weight</label>
+<div class="relative">
+<input class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" placeholder="0.00" type="number"/>
+<span class="absolute right-md top-1/2 -translate-y-1/2 font-label-md text-on-surface-variant">MT</span>
+</div>
+</div>
+<!-- Cargo Value -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Declared Value (USD)</label>
+<div class="relative">
+<span class="absolute left-md top-1/2 -translate-y-1/2 font-label-md text-on-surface-variant">$</span>
+<input class="w-full h-12 bg-surface-container pl-xl pr-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" placeholder="0.00" type="text"/>
+</div>
+</div>
+<!-- Container Number -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Container Serial Number</label>
+<input class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md font-label-md form-input-focus transition-all" placeholder="e.g. MSKU 928471-0" type="text"/>
+</div>
+</div>
+</div>
+<!-- Divider -->
+<div class="h-px bg-outline-variant w-full"></div>
+<!-- Section 2: Logistics & Tracking -->
+<div class="p-lg md:p-xl bg-surface-container-low/30">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-lg flex items-center gap-sm">
+<span class="material-symbols-outlined">route</span>
+                        Transit Information
+                    </h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-xl gap-y-lg">
+<!-- Select Vessel -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Vessel Allocation</label>
+<select class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all">
+<option>Search Fleet...</option>
+<option>MV NORTHERN STAR [IMO 94827]</option>
+<option>MV PACIFIC VENTURE [IMO 81722]</option>
+<option>MS OCEAN GIANTS [IMO 11293]</option>
+</select>
+</div>
+<!-- Shipment Status -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Initial Status</label>
+<select class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md font-bold text-primary-container form-input-focus transition-all">
+<option>DRAFT - Pending Review</option>
+<option>REGISTERED - Confirmed</option>
+<option>READY - At Port</option>
+<option>LOADED - In Transit</option>
+</select>
+</div>
+<!-- Port Details -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Departure Port</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">anchor</span>
+<input class="w-full h-12 bg-surface-container pl-xl pr-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" placeholder="Port of Singapore (SGSIN)" type="text"/>
+</div>
+</div>
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Destination Port</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-on-surface-variant">location_on</span>
+<input class="w-full h-12 bg-surface-container pl-xl pr-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" placeholder="Port of Rotterdam (NL RTM)" type="text"/>
+</div>
+</div>
+<!-- Dates -->
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Departure Date</label>
+<input class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" type="date"/>
+</div>
+<div class="space-y-xs">
+<label class="font-inter font-semibold text-[12px] text-on-surface-variant uppercase tracking-wider block">Estimated Arrival</label>
+<input class="w-full h-12 bg-surface-container px-md rounded-lg border border-outline-variant text-body-md form-input-focus transition-all" type="date"/>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="p-lg md:p-xl bg-surface-container border-t border-outline-variant flex flex-col sm:flex-row justify-end items-center gap-md">
+<button class="w-full sm:w-auto px-xl h-12 border border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-all flex items-center justify-center gap-sm" type="button">
+<span class="material-symbols-outlined">close</span>
+                        Cancel Registration
+                    </button>
+<button class="w-full sm:w-auto px-xl h-12 bg-primary text-white font-bold rounded-lg shadow-md hover:bg-primary-container active:scale-95 transition-all flex items-center justify-center gap-sm" type="submit">
+<span class="material-symbols-outlined">save</span>
+                        Save Shipment
+                    </button>
+</div>
+</form>
+<!-- Map View Placeholder (Glassmorphic) -->
+<div class="mt-xl relative h-64 rounded-xl overflow-hidden group shadow-lg border border-outline-variant">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="A professional high-tech maritime logistics map showing a dotted navigational route from Southeast Asia to Western Europe. The map is rendered in a sophisticated dark navy and cobalt blue palette with glowing data points at major global ports. Interactive UI elements like vessel icons and weather patterns are subtly overlaid, creating a high-end command center aesthetic. The lighting is low-key with vibrant blue accent glows." data-location="Singapore to Rotterdam" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCH-Db0POGx60uAiPR5sUPZryzJZssaRFbrzI9Cklql5hvjLfVZaeaa_45x_q774ZUBbvX6QF50V_Od6boBPJnFs4g6WtVhuu10QsDsxmQne-crMJg0E8di0_m1bZFumC166vyKzcElaQW7mK22dcVS7NIsbHM9chbD2x_92RNDVC_GFeEN0_v5u6xZv_UGQdvKs6pcgA1858p6HcVUg5kwz0FEi1czgeFTpdW0qdXCHuGuQLbpDtj7iRO5fMVFQZL-9XRJyI7rb0we"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+<div class="absolute bottom-lg left-lg right-lg flex justify-between items-end">
+<div class="bg-surface-container-lowest/80 backdrop-blur-md p-md rounded-lg border border-white/20">
+<p class="font-label-md text-label-md text-primary font-bold mb-xs uppercase">Route Projection</p>
+<p class="font-headline-sm text-headline-sm text-on-surface">6,840 Nautical Miles</p>
+</div>
+<button class="bg-primary text-on-primary w-12 h-12 rounded-full flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+<span class="material-symbols-outlined">fullscreen</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action for Quick Add -->
+<button class="fixed bottom-lg right-lg w-14 h-14 bg-tertiary text-on-tertiary rounded-full shadow-2xl flex items-center justify-center hover:rotate-90 transition-all duration-300 z-50">
+<span class="material-symbols-outlined text-[32px]">add</span>
+</button>
+<script>
+        // Simple micro-interaction for form highlighting
+        const inputs = document.querySelectorAll('input, select, textarea');
+        inputs.forEach(input => {
+            input.addEventListener('focus', () => {
+                input.parentElement.parentElement.classList.add('scale-[1.01]');
+                input.parentElement.parentElement.style.transition = 'all 0.2s ease-out';
+            });
+            input.addEventListener('blur', () => {
+                input.parentElement.parentElement.classList.remove('scale-[1.01]');
+            });
+        });
+
+        // Form submission prevention for demo
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Shipment registration sequence initiated. Transmitting to Fleet Command...');
+        });
+    </script>
+</body></html>
