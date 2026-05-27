@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ISNIS Customer Tracking Portal</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#0052cc",
+                        "on-error": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed-dim": "#c4c7c9",
+                        "surface-container": "#e7eefe",
+                        "surface-tint": "#0c56d0",
+                        "on-primary": "#ffffff",
+                        "inverse-primary": "#b2c5ff",
+                        "primary-fixed": "#dae2ff",
+                        "on-primary-fixed-variant": "#0040a2",
+                        "surface-dim": "#d3daea",
+                        "on-tertiary-fixed": "#181c1e",
+                        "primary": "#003d9b",
+                        "secondary-container": "#d9e3f2",
+                        "secondary": "#555f6c",
+                        "surface-variant": "#dce2f3",
+                        "tertiary-fixed": "#e0e3e5",
+                        "on-tertiary-fixed-variant": "#434749",
+                        "inverse-on-surface": "#ebf1ff",
+                        "primary-fixed-dim": "#b2c5ff",
+                        "on-surface-variant": "#434654",
+                        "secondary-fixed": "#d9e3f2",
+                        "on-secondary-fixed": "#131c27",
+                        "on-error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#3e4853",
+                        "tertiary": "#404445",
+                        "surface-container-low": "#f0f3ff",
+                        "secondary-fixed-dim": "#bdc7d6",
+                        "on-secondary": "#ffffff",
+                        "on-background": "#151c27",
+                        "error": "#ba1a1a",
+                        "background": "#f9f9ff",
+                        "on-primary-fixed": "#001848",
+                        "outline-variant": "#c3c6d6",
+                        "on-tertiary": "#ffffff",
+                        "on-secondary-container": "#5b6572",
+                        "surface-container-high": "#e2e8f8",
+                        "inverse-surface": "#2a313d",
+                        "on-primary-container": "#c4d2ff",
+                        "surface-bright": "#f9f9ff",
+                        "surface": "#f9f9ff",
+                        "surface-container-highest": "#dce2f3",
+                        "on-surface": "#151c27",
+                        "tertiary-container": "#575b5d",
+                        "on-tertiary-container": "#cfd3d5",
+                        "outline": "#737685",
+                        "error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "container-max": "1440px",
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "body-sm": ["Inter"],
+                        "display-lg-mobile": ["Inter"],
+                        "data-mono": ["Inter"],
+                        "display-lg": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                        "label-caps": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "display-lg-mobile": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "data-mono": ["14px", {"lineHeight": "20px", "fontWeight": "500"}],
+                        "display-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface min-h-screen pb-20">
+<!-- TopAppBar Component -->
+<header class="bg-white/80 dark:bg-surface-dim/80 backdrop-blur-md shadow-sm flex justify-between items-center w-full px-margin-mobile z-50 sticky top-0 h-16">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="menu">menu</span>
+<h1 class="font-headline-md text-headline-md font-bold text-primary-container">ISNIS Logistics</h1>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary-fixed">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a logistics manager in a bright, modern corporate setting. The individual is wearing a crisp white shirt, looking confident and approachable. The lighting is soft and even, characteristic of a high-end corporate office, with a subtle blurred background of a glass-walled conference room. The overall color palette is dominated by clean whites and professional blues, reflecting the ISNIS Logistics brand identity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKuGPx7ZCNFX3Wo9ecsrunNJ8ThNH8pAYv8g-zJGEzVRVaKuyc3YYMvv-Jz_yE8tQSV-lU-Z0bBEB1pAfd71xpxHm0EGQ9B7J2i26Ec_E-onEQK-0ZaMc1p-19TbfZlGDn1Cjz6Mhzz7wL-LPh_tDxnCyRCCdEmfyz9gGU2TPRVeY67AM02nstHErIpLsHgML3BehS0o529TQAg_-xqz-LoeN9cJiDq_YnDgfuMAdzAh6-NltI5gadsLlKvQw8Lnd68bEfRQsCal8"/>
+</div>
+</header>
+<main class="px-margin-mobile pt-6 space-y-6">
+<!-- Hero: Track Shipment Search -->
+<section class="space-y-4">
+<div class="space-y-1">
+<h2 class="font-display-lg-mobile text-display-lg-mobile text-primary">Track Shipment</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time global supply chain visibility.</p>
+</div>
+<div class="relative group">
+<input class="w-full h-14 pl-12 pr-4 rounded-xl border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 bg-surface-container-lowest transition-all shadow-sm" placeholder="Enter tracking number (e.g., ISN-10293)" type="text"/>
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-primary" data-icon="search">search</span>
+<button class="absolute right-2 top-1/2 -translate-y-1/2 bg-primary text-on-primary px-4 py-2 rounded-lg font-label-caps text-label-caps hover:bg-primary-container active:scale-95 transition-all">
+                    TRACK
+                </button>
+</div>
+</section>
+<!-- Stats Overview Cards -->
+<div class="grid grid-cols-2 gap-4">
+<div class="p-4 rounded-xl bg-primary-fixed text-on-primary-fixed shadow-sm border border-primary/10">
+<span class="material-symbols-outlined text-primary mb-2 block" data-icon="local_shipping">local_shipping</span>
+<div class="text-2xl font-bold">03</div>
+<div class="font-label-caps text-label-caps opacity-80">My Active Shipments</div>
+</div>
+<div class="p-4 rounded-xl bg-surface-container-high text-on-surface shadow-sm border border-outline-variant/30">
+<span class="material-symbols-outlined text-secondary mb-2 block" data-icon="task_alt">task_alt</span>
+<div class="text-2xl font-bold text-secondary">15</div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Delivered</div>
+</div>
+</div>
+<!-- Active Shipment Detail Card -->
+<section class="bg-white rounded-xl shadow-sm border border-outline-variant overflow-hidden">
+<div class="p-4 border-b border-outline-variant bg-surface-container-low flex justify-between items-center">
+<div>
+<span class="font-label-caps text-label-caps text-primary bg-primary-fixed px-2 py-0.5 rounded">IN TRANSIT</span>
+<h3 class="font-headline-md text-headline-md mt-1">ISN-10293</h3>
+</div>
+<div class="text-right">
+<div class="font-label-caps text-label-caps text-on-surface-variant">ETA</div>
+<div class="font-data-mono text-data-mono font-bold">24 Oct 2023</div>
+</div>
+</div>
+<!-- Shipment Timeline -->
+<div class="p-6 relative">
+<div class="flex justify-between items-start mb-8 relative">
+<!-- Progress Line -->
+<div class="absolute top-4 left-0 w-full h-1 bg-surface-container-highest z-0">
+<div class="h-full bg-primary" style="width: 66%;"></div>
+</div>
+<!-- Step 1 -->
+<div class="flex flex-col items-center z-10 space-y-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-[10px] text-center w-16">Cargo Received</span>
+</div>
+<!-- Step 2 -->
+<div class="flex flex-col items-center z-10 space-y-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center border-4 border-white">
+<span class="material-symbols-outlined text-sm" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<span class="font-label-caps text-[10px] text-center w-16">Loaded</span>
+</div>
+<!-- Step 3 (Active) -->
+<div class="flex flex-col items-center z-10 space-y-2">
+<div class="w-8 h-8 rounded-full bg-primary text-on-primary flex items-center justify-center ring-4 ring-primary/20 scale-110">
+<span class="material-symbols-outlined text-sm" data-icon="directions_boat" style="font-variation-settings: 'FILL' 1;">directions_boat</span>
+</div>
+<span class="font-label-caps text-[10px] text-center w-16 text-primary font-bold">In Transit</span>
+</div>
+<!-- Step 4 -->
+<div class="flex flex-col items-center z-10 space-y-2">
+<div class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="meeting_room">meeting_room</span>
+</div>
+<span class="font-label-caps text-[10px] text-center w-16 text-on-surface-variant">Arrived</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-outline-variant">
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Vessel</div>
+<div class="font-body-md text-body-md font-semibold">MV Pacific</div>
+</div>
+<div>
+<div class="font-label-caps text-label-caps text-on-surface-variant">Last Port</div>
+<div class="font-body-md text-body-md font-semibold">Ningbo, China</div>
+</div>
+</div>
+</div>
+<!-- Map Snippet -->
+<div class="h-48 w-full bg-surface-container-highest relative overflow-hidden group">
+<img alt="Vessel Route Map" class="w-full h-full object-cover" data-alt="A sophisticated satellite map view showing the Indian Ocean corridor between the coastline of East Asia and East Africa. A distinct primary blue dotted line illustrates the shipping route. A small white and blue vessel icon is positioned midway between China and Tanzania. The map features a minimalist dark-ocean aesthetic with golden-tinted landmasses, reflecting a high-end logistics tracking interface. The mood is precise, global, and technologically advanced." data-location="Indian Ocean" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDh0lBYjE45WvMuvXPmNoOlrfsEXVhsbYvENhMEupA8D1miR8Js9S4dfSqAFkU086Z00iQLf8uZe5iBpD3G231sYygClxGqHR5vyRRMWqsY-UwoL3b02Sd2QoR5XHq0_xDXAu6dLfYCczLdfVMYiQiDlblkJBZHtwsjI-lqJUpY5rgcW2PAZqsRczKaHWOE4qj6IuBZhi18sNx5d-gdqYgqs4PT-Z381CWRhVn3JNIrN_xfFeZ0ATqJEzzaqFaZdTA9tSEeO5rMQmc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<div class="absolute bottom-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full shadow-lg border border-white/50">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+<span class="font-label-caps text-[10px] text-primary">LIVE POSITION</span>
+</div>
+</div>
+</div>
+</section>
+<!-- More Active Shipments List -->
+<section class="space-y-3">
+<h4 class="font-label-caps text-label-caps text-on-surface-variant px-1">OTHER SHIPMENTS</h4>
+<div class="space-y-3">
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex items-center justify-between hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="package_2">package_2</span>
+</div>
+<div>
+<div class="font-data-mono text-data-mono font-bold">ISN-10442</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Air Freight • Frankfurt</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+<div class="bg-white p-4 rounded-xl border border-outline-variant flex items-center justify-between hover:border-primary transition-colors cursor-pointer group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<div class="font-data-mono text-data-mono font-bold">ISN-10511</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant">Road • Johannesburg</div>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar Component -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full z-50 flex justify-around items-center h-16 bg-surface-container backdrop-blur-xl border-t border-outline-variant dark:border-outline shadow-lg rounded-t-xl px-2">
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary-container active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-caps text-[10px] mt-1">Home</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary-container active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+<span class="font-label-caps text-[10px] mt-1">Ship</span>
+</div>
+<div class="flex flex-col items-center justify-center text-primary dark:text-inverse-primary font-bold active:scale-90 transition-transform cursor-pointer">
+<span class="material-symbols-outlined" data-icon="location_on" style="font-variation-settings: 'FILL' 1;">location_on</span>
+<span class="font-label-caps text-[10px] mt-1">Track</span>
+</div>
+<div class="flex flex-col items-center justify-center text-on-surface-variant dark:text-surface-variant hover:text-primary-container active:scale-90 transition-transform cursor-pointer relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="font-label-caps text-[10px] mt-1">Alerts</span>
+<div class="absolute top-0 right-1 w-2 h-2 bg-error rounded-full border-2 border-surface-container"></div>
+</div>
+</nav>
+<script>
+        // Micro-interaction for search focus
+        const searchInput = document.querySelector('input[type="text"]');
+        searchInput.addEventListener('focus', () => {
+            searchInput.parentElement.classList.add('ring-2', 'ring-primary/20');
+        });
+        searchInput.addEventListener('blur', () => {
+            searchInput.parentElement.classList.remove('ring-2', 'ring-primary/20');
+        });
+
+        // Simple mock for "Tracking" interaction
+        const trackBtn = document.querySelector('button');
+        trackBtn.addEventListener('click', () => {
+            trackBtn.innerText = 'LOCATING...';
+            setTimeout(() => {
+                trackBtn.innerText = 'TRACK';
+            }, 1500);
+        });
+    </script>
+</body></html>

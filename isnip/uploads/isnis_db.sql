@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 22, 2026 at 09:32 PM
+-- Generation Time: May 27, 2026 at 01:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -34,6 +34,21 @@ CREATE TABLE `cargo` (
   `quantity` int(11) DEFAULT NULL,
   `cargo_description` text DEFAULT NULL,
   `cargo_value` decimal(12,2) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `containers`
+--
+
+CREATE TABLE `containers` (
+  `container_id` int(11) NOT NULL,
+  `shipment_id` int(11) DEFAULT NULL,
+  `container_number` varchar(100) DEFAULT NULL,
+  `type` varchar(50) DEFAULT NULL,
+  `seal_number` varchar(50) DEFAULT NULL,
+  `weight` decimal(10,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -138,6 +153,17 @@ CREATE TABLE `ports` (
   `longitude` decimal(10,6) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `ports`
+--
+
+INSERT INTO `ports` (`port_id`, `port_name`, `country`, `city`, `latitude`, `longitude`) VALUES
+(1, 'Port of Shanghai', 'China', 'Shanghai', 31.230391, 121.473701),
+(2, 'Port of Shenzhen', 'China', 'Shenzhen', 22.543097, 114.057861),
+(3, 'Port of Ningbo-Zhoushan', 'China', 'Ningbo', 29.868336, 121.544006),
+(4, 'Port of Dar es Salaam', 'Tanzania', 'Dar es Salaam', -6.792354, 39.208328),
+(5, 'Port of Tanga', 'Tanzania', 'Tanga', -5.068875, 39.102318);
+
 -- --------------------------------------------------------
 
 --
@@ -165,6 +191,18 @@ CREATE TABLE `routes` (
   `destination_port_id` int(11) DEFAULT NULL,
   `estimated_days` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `routes`
+--
+
+INSERT INTO `routes` (`route_id`, `route_name`, `departure_port_id`, `destination_port_id`, `estimated_days`) VALUES
+(1, 'Shanghai to Dar es Salaam', 1, 4, 26),
+(2, 'Shanghai to Tanga', 1, 5, 28),
+(3, 'Shenzhen to Dar es Salaam', 2, 4, 22),
+(4, 'Shenzhen to Tanga', 2, 5, 24),
+(5, 'Ningbo to Dar es Salaam', 3, 4, 24),
+(6, 'Ningbo to Tanga', 3, 5, 26);
 
 -- --------------------------------------------------------
 
@@ -242,7 +280,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `full_name`, `email`, `phone`, `password`, `role`, `profile_photo`, `status`, `created_at`) VALUES
-(1, 'kitupi jackson', 'kaemba155@gmai.com', '0754545454', '$2y$10$HRtf4GRAVephTUTozeHSW.SnkQOvK0nk0VxgLqpIlm5Uo91ltUuD2', 'customer', 'uploads/1779471182_1778783479_5941_cctv1.jpg', 'active', '2026-05-22 17:33:02'),
+(1, 'kitupi jackson', 'kaemba155@gmai.com', '0754545454', '$2y$10$HRtf4GRAVephTUTozeHSW.SnkQOvK0nk0VxgLqpIlm5Uo91ltUuD2', 'customer', 'uploads/1779760248_1778783157_9554_dstv2.jpg', 'active', '2026-05-22 17:33:02'),
 (2, 'kitupi jackson', 'kaemba0155@gmai.com', '0754545455', '$2y$10$brgKzRITtTh1SSQEU7mHn.Gnz0E7wVvv0oaJwQa6eZbiAmjQXQPL2', 'customer', 'uploads/1779472040_zuku1.jpg', 'active', '2026-05-22 17:47:20'),
 (3, 'amani mpamda', 'mpanda155@gmai.com', '0754545454', '$2y$10$wc8NYCVtqUFsQLsdTr/KLu0bKFIrJuov2bdyX4I/obiPGzGBZN1pC', 'admin', NULL, 'active', '2026-05-22 18:53:37');
 
@@ -263,6 +301,14 @@ CREATE TABLE `vessels` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `vessels`
+--
+
+INSERT INTO `vessels` (`vessel_id`, `vessel_name`, `vessel_type`, `registration_number`, `capacity`, `captain_name`, `status`, `created_at`) VALUES
+(1, 'MSC Gülsün', 'Container Ship', 'IMO-9839430', '23756', 'Captain Michael sanga', 'active', '2026-05-26 10:00:32'),
+(2, 'Ever Ace', 'Container Ship', 'IMO-9893890', '23992', 'Captain David mwinuka', 'active', '2026-05-26 10:00:32');
+
 -- --------------------------------------------------------
 
 --
@@ -276,6 +322,18 @@ CREATE TABLE `vessel_routes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Dumping data for table `vessel_routes`
+--
+
+INSERT INTO `vessel_routes` (`vessel_route_id`, `vessel_id`, `route_id`) VALUES
+(1, 1, 1),
+(2, 1, 2),
+(3, 1, 5),
+(4, 2, 3),
+(5, 2, 4),
+(6, 2, 6);
+
+--
 -- Indexes for dumped tables
 --
 
@@ -285,6 +343,12 @@ CREATE TABLE `vessel_routes` (
 ALTER TABLE `cargo`
   ADD PRIMARY KEY (`cargo_id`),
   ADD KEY `shipment_id` (`shipment_id`);
+
+--
+-- Indexes for table `containers`
+--
+ALTER TABLE `containers`
+  ADD PRIMARY KEY (`container_id`);
 
 --
 -- Indexes for table `customers`
@@ -400,6 +464,12 @@ ALTER TABLE `cargo`
   MODIFY `cargo_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `containers`
+--
+ALTER TABLE `containers`
+  MODIFY `container_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
@@ -433,7 +503,7 @@ ALTER TABLE `notifications`
 -- AUTO_INCREMENT for table `ports`
 --
 ALTER TABLE `ports`
-  MODIFY `port_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `port_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `reports`
@@ -445,7 +515,7 @@ ALTER TABLE `reports`
 -- AUTO_INCREMENT for table `routes`
 --
 ALTER TABLE `routes`
-  MODIFY `route_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shipments`
@@ -475,13 +545,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `vessels`
 --
 ALTER TABLE `vessels`
-  MODIFY `vessel_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vessel_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vessel_routes`
 --
 ALTER TABLE `vessel_routes`
-  MODIFY `vessel_route_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vessel_route_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Constraints for dumped tables

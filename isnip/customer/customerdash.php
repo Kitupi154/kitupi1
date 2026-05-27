@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if(!isset($_SESSION['user_id'])){
+    header("Location: registrations/login1.php");
+    exit();
+}
+?>
 <!DOCTYPE html>
 
 <html class="light" lang="en"><head>
@@ -145,69 +153,11 @@
   </head>
 <body class="bg-background text-on-surface font-body-md overflow-x-hidden">
 <!-- Top Navigation Bar -->
-<nav class="fixed top-0 left-0 w-full z-40 flex justify-between items-center px-lg h-16 bg-surface dark:bg-surface-dim shadow-sm dark:shadow-none border-b border-outline-variant dark:border-outline">
-<div class="flex items-center gap-md">
-<span class="material-symbols-outlined text-primary dark:text-primary-fixed cursor-pointer">menu</span>
-<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed-dim">ISNIS Navigation</h1>
-</div>
-<div class="flex items-center gap-lg">
-<div class="hidden md:flex items-center gap-md">
-<span class="font-label-md text-label-md text-primary dark:text-primary-fixed font-bold cursor-pointer">Dashboard</span>
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors py-1 px-2 rounded cursor-pointer">Shipments</span>
-<span class="font-label-md text-label-md text-on-surface-variant dark:text-outline hover:bg-surface-container-high dark:hover:bg-surface-container transition-colors py-1 px-2 rounded cursor-pointer">Analytics</span>
-</div>
-<div class="flex items-center gap-sm">
-<span class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container rounded-full cursor-pointer">notifications</span>
-<img alt="User profile photo" class="w-8 h-8 rounded-full border border-outline-variant cursor-pointer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPXHc7OlkkyZmQg7L5-q91KaY4upJkC8UAZljAV3EgeXgHkg0rHwODpQRkA3b9seCGXwYkJG1AduTVfO5Vr1iLlRDn7yFnQ0SlxTIWgiImmnRSxv8HLVEOCAh7O1PMXcQSrWpP6wBCH-yrTn59YtdAW_Tz2yZERNclt7j_NaIVNJx6vPSc4mVNUJTyMFJZVKjzT2SwnklmsGxDZo-TZpQuhbfxa70phaeei_HxcTcBCsFYpC4_Bpt7QJGftOOBxI3uk4aIkOa77PRt"/>
-</div>
-</div>
-</nav>
-<!-- Sidebar Navigation -->
-<aside class="fixed left-0 top-0 h-full z-50 flex flex-col py-xl bg-gradient-to-b from-primary to-tertiary dark:from-primary-container dark:to-tertiary-container shadow-xl dark:shadow-none w-[260px] hidden md:flex">
-<div class="px-lg mb-xl">
-<h2 class="font-headline-md text-headline-md text-on-primary">ISNIS</h2>
-<div class="mt-sm flex items-center gap-sm">
-<img alt="Vessel Operator" class="w-10 h-10 rounded-full border-2 border-on-primary/20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw1zcyLHGBiCJEG8bwzPWHbZTASQM0axnTyAKIZ6EzqSXBArxRoBxtbEgHhx4RtF864erT8G0SZTt73Ctg4rNoidDshlhfvPsjzAPFmuA0PW8Zy6jF6xfTDE_4t48fCDX9L_zxP4Ham02zE9PKfw8HxFSVbOiR8w2VRT1auWaBj7768SzIHs4aQtiNhpjVwAiBAww5y1FxpM3A9CrtHBuqW8cD2ih1qc5yDJ0tHCNt38vEqu7OT9Skf528L3268jJhQXLDGHfd_Qjo"/>
-<div class="overflow-hidden">
-<p class="font-headline-sm text-[14px] text-on-primary truncate">ISNIS Operator</p>
-<p class="font-body-sm text-[11px] text-on-primary/70">Fleet Command</p>
-</div>
-</div>
-</div>
-<nav class="flex-1 space-y-1">
-<div class="flex items-center gap-sm bg-surface-container-lowest/10 text-on-primary border-l-4 border-on-primary py-sm px-md cursor-pointer">
-<span class="material-symbols-outlined">dashboard</span>
-<span class="font-body-md text-body-md">Dashboard</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">local_shipping</span>
-<span class="font-body-md text-body-md">Shipments</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">sailing</span>
-<span class="font-body-md text-body-md">Vessel Tracking</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">map</span>
-<span class="font-body-md text-body-md">Maps</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">forum</span>
-<span class="font-body-md text-body-md">Messages</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">assessment</span>
-<span class="font-body-md text-body-md">Reports</span>
-</div>
-<div class="flex items-center gap-sm text-on-primary/70 hover:text-on-primary hover:bg-on-primary/5 py-sm px-md transition-all duration-200 cursor-pointer">
-<span class="material-symbols-outlined">settings</span>
-<span class="font-body-md text-body-md">Settings</span>
-</div>
-</nav>
-<div class="mt-auto px-md pt-md border-t border-on-primary/10">
-<p class="text-[10px] text-on-primary/50 tracking-widest font-label-md">V1.2.4</p>
-</div>
-</aside>
+
+<?php include("includes/header.php"); ?>
+
+<?php include("includes/sidebar.php"); ?>
+
 <!-- Main Content Wrapper -->
 <main class="pt-24 pb-12 px-margin-mobile md:ml-[260px] md:px-margin-desktop min-h-screen">
 <!-- Welcome Header -->
