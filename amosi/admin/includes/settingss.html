@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TechCore Admin - Full Settings Console</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            background-color: #051424; /* surface */
+            scrollbar-width: thin;
+            scrollbar-color: #3e4a3d #051424;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface": "#051424",
+                      "secondary": "#7bd0ff",
+                      "on-primary-container": "#003111",
+                      "tertiary": "#ffb2bf",
+                      "on-tertiary-fixed-variant": "#8a143c",
+                      "on-secondary": "#00354a",
+                      "primary-container": "#1ca64d",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#ec6284",
+                      "surface-container-low": "#0d1c2d",
+                      "surface-container-high": "#1c2b3c",
+                      "error": "#ffb4ab",
+                      "on-surface-variant": "#bdcaba",
+                      "outline": "#879485",
+                      "secondary-fixed": "#c4e7ff",
+                      "outline-variant": "#3e4a3d",
+                      "inverse-on-surface": "#233143",
+                      "primary-fixed": "#7ffc97",
+                      "inverse-surface": "#d4e4fa",
+                      "on-error-container": "#ffdad6",
+                      "surface-tint": "#62df7d",
+                      "on-tertiary-container": "#5a0022",
+                      "secondary-container": "#00a6e0",
+                      "tertiary-fixed": "#ffd9de",
+                      "on-secondary-fixed-variant": "#004c69",
+                      "primary": "#16a34a", /* Overridden to requested green */
+                      "tertiary-fixed-dim": "#ffb2bf",
+                      "surface-container": "#122131",
+                      "surface-bright": "#2c3a4c",
+                      "surface-container-lowest": "#010f1f",
+                      "on-error": "#690005",
+                      "on-surface": "#d4e4fa",
+                      "on-secondary-fixed": "#001e2c",
+                      "on-primary-fixed": "#002109",
+                      "inverse-primary": "#006e2d",
+                      "secondary-fixed-dim": "#7bd0ff",
+                      "primary-fixed-dim": "#62df7d",
+                      "on-tertiary-fixed": "#3f0016",
+                      "on-primary-fixed-variant": "#005320",
+                      "background": "#051424",
+                      "surface-dim": "#051424",
+                      "surface-container-highest": "#273647",
+                      "on-secondary-container": "#00374d",
+                      "on-tertiary": "#660027",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#273647",
+                      "on-background": "#d4e4fa"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.125rem",
+                      "lg": "0.25rem",
+                      "xl": "0.5rem",
+                      "full": "0.75rem"
+              },
+              "spacing": {
+                      "stack-lg": "32px",
+                      "container-max-width": "1440px",
+                      "gutter": "16px",
+                      "stack-xs": "4px",
+                      "stack-md": "16px",
+                      "stack-sm": "8px",
+                      "unit": "4px",
+                      "margin": "24px"
+              },
+              "fontFamily": {
+                      "label-sm": ["JetBrains Mono"],
+                      "headline-lg": ["Geist"],
+                      "body-lg": ["Geist"],
+                      "headline-sm": ["Geist"],
+                      "body-md": ["Geist"],
+                      "label-md": ["JetBrains Mono"],
+                      "headline-md": ["Geist"]
+              },
+              "fontSize": {
+                      "label-sm": ["10px", {"lineHeight": "14px", "letterSpacing": "0.08em", "fontWeight": "500"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                      "body-lg": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "500"}],
+                      "body-md": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "label-md": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+    </script>
+</head>
+<body class="flex min-h-screen">
+<!-- SideNavBar (from SCREEN_28) -->
+<aside class="fixed left-0 top-0 h-full w-64 bg-surface-container border-r border-outline-variant flex flex-col py-margin px-stack-md z-50 transition-all duration-300">
+<div class="mb-stack-lg px-stack-sm">
+<h1 class="font-headline-sm text-headline-sm font-bold text-primary">TechCore</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">System Console v4.2.0</p>
+</div>
+<nav class="flex-grow space-y-unit overflow-y-auto no-scrollbar">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span class="font-label-md text-label-md">Analytics</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="dns">dns</span>
+<span class="font-label-md text-label-md">System Health</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="lan">lan</span>
+<span class="font-label-md text-label-md">Network</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg bg-primary/10 text-primary font-bold border-r-4 border-primary transition-all shadow-inner" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+</nav>
+<div class="mt-auto pt-stack-md border-t border-outline-variant space-y-unit">
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+<span class="font-label-md text-label-md">Support</span>
+</a>
+<a class="flex items-center gap-stack-md px-stack-md py-stack-sm rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Sign Out</span>
+</a>
+</div>
+</aside>
+<!-- Main Area -->
+<main class="flex-grow ml-64 min-h-screen flex flex-col relative">
+<!-- TopAppBar (from SCREEN_28) -->
+<header class="sticky top-0 z-40 bg-surface/95 backdrop-blur-md border-b border-outline-variant flex justify-between items-center w-full px-margin h-16">
+<div class="flex items-center gap-stack-md">
+<span class="font-headline-md text-headline-md font-bold text-on-surface">Settings Console</span>
+</div>
+<div class="flex items-center gap-stack-lg">
+<div class="relative flex items-center">
+<span class="material-symbols-outlined absolute left-stack-md text-on-surface-variant" data-icon="search">search</span>
+<input class="bg-surface-container-low border border-outline-variant rounded-full pl-10 pr-margin py-stack-xs text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all w-72 placeholder:text-outline" placeholder="Search system parameters..." type="text"/>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="material-symbols-outlined text-on-surface-variant hover:bg-surface-container-highest p-2 rounded-full transition-colors relative" data-icon="notifications">
+                    notifications
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border border-surface"></span>
+</button>
+<div class="flex items-center gap-stack-sm pl-stack-sm border-l border-outline-variant">
+<div class="h-9 w-9 rounded-full overflow-hidden border border-outline-variant">
+<img alt="Admin" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF0YIOzg4WX4eWbyqAl6vR_NyhkH78QaSMZu3RC6mS7dxoSSOiTCwRr909GfthLWq4ScX6BFtg85SZ-TMjETuZIuXg0WO9hUpWXpaTVPwvbmXQ9nLnB7_DiJxTmAen3kJ3vM2HEYbzut0YVA8KU_KZV_SbhkXqD0iyZPUErCak6vZhkqpgYsZ3mK3t8CdPpmsvLebOzs-uqsLsx_q1Rb4--o-WlX37OGBoOHPSto0gxlFf45wiket7Q0AwksIzBSyzxOfBhsf9TZ09"/>
+</div>
+<div class="hidden xl:block">
+<div class="text-label-md font-bold text-on-surface">Alex Rivera</div>
+<div class="text-[10px] text-outline uppercase font-label-sm">Super Admin</div>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Navigation Tabs (from SCREEN_3) -->
+<div class="sticky top-16 z-30 bg-surface border-b border-outline-variant px-margin py-stack-sm overflow-x-auto no-scrollbar flex items-center gap-stack-lg">
+<button class="px-stack-md py-stack-xs text-primary font-bold border-b-2 border-primary text-label-md whitespace-nowrap">General</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">Branding</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">Homepage</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">Contact</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">Security</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">Admin Profile</button>
+<button class="px-stack-md py-stack-xs text-on-surface-variant hover:text-on-surface text-label-md whitespace-nowrap transition-colors">System</button>
+</div>
+<!-- Content Area -->
+<div class="p-margin max-w-[1280px] mx-auto w-full space-y-gutter pb-40">
+<div class="grid grid-cols-12 gap-gutter">
+<!-- Column 1: Website Info & SEO -->
+<div class="col-span-12 lg:col-span-8 space-y-gutter">
+<!-- 1. Website Information -->
+<section class="bg-surface-container border border-outline-variant rounded-xl overflow-hidden shadow-lg">
+<div class="px-margin py-stack-md border-b border-outline-variant bg-surface-container-low flex items-center justify-between">
+<div class="flex items-center gap-stack-md text-primary">
+<span class="material-symbols-outlined" data-icon="info">info</span>
+<h2 class="font-headline-sm text-headline-sm">Website Information</h2>
+</div>
+<div class="flex gap-stack-sm">
+<button class="px-stack-md py-stack-xs border border-outline-variant text-on-surface-variant rounded-lg font-label-md hover:bg-surface-container-high">Reset</button>
+</div>
+</div>
+<div class="p-margin grid grid-cols-2 gap-margin">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Node Name</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" type="text" value="TechCore Global Node"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Tagline</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" placeholder="Precision. Integrity. Excellence." type="text"/>
+</div>
+<div class="col-span-2 space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Infrastructure Description</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all resize-none" rows="3">Enterprise-grade network orchestration layer and core node management interface for TechCore distributed systems.</textarea>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Primary Contact Email</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" type="email" value="ops@techcore.io"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">WhatsApp Support</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" type="text" value="+1 415 555 0123"/>
+</div>
+<div class="col-span-2 space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Data Center Physical Address</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" type="text" value="Silicon Valley DC-3, Cluster B, Suite 101, Santa Clara, CA"/>
+</div>
+<div class="col-span-2 space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Google Maps API Link</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all" type="text" value="https://maps.googleapis.com/techcore-dc3"/>
+</div>
+<div class="col-span-2 pt-stack-md border-t border-outline-variant grid grid-cols-2 gap-margin mt-stack-sm">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">System Language</label>
+<select class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none transition-all">
+<option>English (United States)</option>
+<option>Deutsch (Germany)</option>
+<option>日本語 (Japan)</option>
+</select>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Theme Preference</label>
+<div class="flex bg-surface-container-low p-1 rounded-lg border border-outline-variant">
+<button class="flex-grow flex items-center justify-center gap-stack-sm py-1.5 rounded-md text-label-md text-outline hover:text-on-surface"><span class="material-symbols-outlined text-[18px]">light_mode</span> Light</button>
+<button class="flex-grow flex items-center justify-center gap-stack-sm py-1.5 rounded-md text-label-md font-bold bg-surface-container-highest text-primary shadow-sm"><span class="material-symbols-outlined text-[18px]">dark_mode</span> Dark</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 3. Homepage Hero (Interactive Preview) -->
+<section class="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+<div class="bg-surface-container border border-outline-variant rounded-xl p-margin flex flex-col">
+<div class="flex items-center gap-stack-md text-primary mb-stack-lg">
+<span class="material-symbols-outlined" data-icon="web">web</span>
+<h3 class="font-headline-sm text-headline-sm">Homepage Hero</h3>
+</div>
+<div class="space-y-stack-md flex-grow">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Hero Title</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" type="text" value="Enterprise Network Orchestration"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Subtitle / Tagline</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" type="text" value="Engineered for mission-critical infrastructure."/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Button Label</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" type="text" value="Connect Node"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Hero Background</label>
+<div class="flex items-center gap-stack-md border-2 border-dashed border-outline-variant p-stack-md rounded-lg hover:border-primary cursor-pointer transition-all bg-surface-container-lowest/50 group">
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="upload">upload</span>
+<span class="text-body-md text-on-surface-variant group-hover:text-on-surface transition-colors">Drop high-res asset (4K recommended)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Preview Panel (from SCREEN_3) -->
+<div class="bg-surface-container-lowest rounded-xl shadow-2xl relative overflow-hidden flex flex-col border border-outline-variant min-h-[400px]">
+<img alt="Hero Preview" class="absolute inset-0 w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhqYc7rqSURJLLpLLQDIjh1dC-70MP535ayAzjcTz41Xmy5xacP7tMK2SzddjtI4KW334A5S5Fem1qm2biWhfFjEplXZxBmhn3CkzpT1Kd-GwXXu71Orw3ywxpNjKwnmpB5Kyz1oy67h6nX3iRHbcoiyMQ7YpY_Mhf6P8Cp_X4pXZm3nAyuc1dFzAO437J1SpNxCvRKZVPwPkGTS5qKKZ1RdPDKAZFux5TLbpEP6WRFeFODnxR-5eDF63QK88ykziIdw1H0M5KHu5Z"/>
+<div class="relative z-10 flex flex-col items-center justify-center text-center p-margin h-full">
+<div class="absolute top-margin left-margin flex items-center gap-stack-xs">
+<span class="bg-primary px-stack-sm py-0.5 rounded text-[10px] text-on-primary font-bold uppercase tracking-[0.2em] shadow-lg">Live Preview</span>
+</div>
+<h4 class="text-on-surface font-headline-lg text-headline-lg max-w-xs mb-stack-sm">Enterprise Network Orchestration</h4>
+<p class="text-on-surface-variant text-body-md mb-stack-lg max-w-xs">Engineered for mission-critical infrastructure.</p>
+<button class="bg-primary text-on-primary px-stack-lg py-stack-sm rounded-lg font-bold text-label-md shadow-xl hover:scale-105 transition-transform">Connect Node</button>
+</div>
+</div>
+</section>
+<!-- 5. SEO & Metadata -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-margin">
+<div class="flex items-center justify-between mb-margin">
+<div class="flex items-center gap-stack-md text-primary">
+<span class="material-symbols-outlined" data-icon="manage_search">manage_search</span>
+<h3 class="font-headline-sm text-headline-sm">SEO &amp; Metadata</h3>
+</div>
+<span class="px-stack-md py-stack-xs bg-primary/10 text-primary border border-primary/20 rounded-full font-label-sm">INDEXING: ACTIVE</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-margin">
+<div class="md:col-span-7 space-y-stack-md">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Meta Title</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" type="text" value="TechCore | Advanced Systems &amp; Distributed Network Solutions"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Meta Description</label>
+<textarea class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" rows="3">Discover TechCore's next-generation infrastructure services. Providing secure, scalable, and resilient network orchestration for the global enterprise.</textarea>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Primary Keywords</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface focus:border-primary outline-none" placeholder="infrastructure, devops, cloud, security, node-management" type="text"/>
+</div>
+</div>
+<div class="md:col-span-5 space-y-stack-md">
+<div class="bg-surface-container-low border border-outline-variant p-stack-md rounded-xl h-full flex flex-col">
+<label class="font-label-md text-label-md text-outline uppercase mb-stack-md text-center">Open Graph Image (OG)</label>
+<div class="flex-grow flex flex-col items-center justify-center border-2 border-dashed border-outline-variant rounded-lg text-outline hover:text-primary hover:border-primary transition-all cursor-pointer bg-surface-container-lowest/50 group">
+<span class="material-symbols-outlined text-[40px] group-hover:scale-110 transition-transform" data-icon="add_photo_alternate">add_photo_alternate</span>
+<p class="text-label-sm mt-stack-md">1200 x 630 Recommended</p>
+</div>
+<p class="text-[10px] text-on-surface-variant mt-stack-md text-center">Previews how the node appears on social share platforms.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Column 2: Sidebar Branding, Security, Admin -->
+<div class="col-span-12 lg:col-span-4 space-y-gutter">
+<!-- 2. Branding -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-margin">
+<div class="flex items-center gap-stack-md text-primary mb-stack-lg">
+<span class="material-symbols-outlined" data-icon="palette">palette</span>
+<h3 class="font-headline-sm text-headline-sm">Branding Assets</h3>
+</div>
+<div class="space-y-stack-lg">
+<div class="flex items-center justify-between bg-surface-container-low p-stack-md rounded-xl border border-outline-variant">
+<div>
+<span class="font-label-md text-label-md text-outline uppercase block mb-1">Corporate Logo</span>
+<span class="text-label-sm text-on-surface-variant">SVG/PNG supported</span>
+</div>
+<div class="w-14 h-14 bg-surface-container-highest rounded-lg border border-outline-variant flex items-center justify-center relative overflow-hidden group cursor-pointer">
+<span class="material-symbols-outlined text-outline" data-icon="image">image</span>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[20px]" data-icon="edit">edit</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-stack-md">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Primary Color</label>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest p-stack-sm rounded-lg border border-outline-variant">
+<div class="w-8 h-8 rounded bg-primary border border-white/10"></div>
+<input class="bg-transparent text-label-md text-on-surface w-full focus:outline-none" type="text" value="#16A34A"/>
+</div>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Secondary</label>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest p-stack-sm rounded-lg border border-outline-variant">
+<div class="w-8 h-8 rounded bg-secondary border border-white/10"></div>
+<input class="bg-transparent text-label-md text-on-surface w-full focus:outline-none" type="text" value="#7BD0FF"/>
+</div>
+</div>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Favicon Asset</label>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest p-stack-md rounded-lg border border-outline-variant border-dashed">
+<div class="w-8 h-8 bg-surface-container-highest rounded flex items-center justify-center"><span class="material-symbols-outlined text-[16px]">favicon</span></div>
+<span class="text-label-sm text-on-surface-variant flex-grow">Upload 32x32px ico</span>
+<button class="text-primary text-label-md font-bold uppercase hover:underline">Pick</button>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Admin Profile (from request) -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-margin">
+<div class="flex items-center gap-stack-md text-primary mb-stack-lg">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<h3 class="font-headline-sm text-headline-sm">Admin Profile</h3>
+</div>
+<div class="flex flex-col items-center mb-stack-lg bg-surface-container-low p-stack-md rounded-xl border border-outline-variant">
+<div class="relative group cursor-pointer">
+<img alt="Admin Photo" class="w-20 h-20 rounded-full border-2 border-primary shadow-lg" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF0YIOzg4WX4eWbyqAl6vR_NyhkH78QaSMZu3RC6mS7dxoSSOiTCwRr909GfthLWq4ScX6BFtg85SZ-TMjETuZIuXg0WO9hUpWXpaTVPwvbmXQ9nLnB7_DiJxTmAen3kJ3vM2HEYbzut0YVA8KU_KZV_SbhkXqD0iyZPUErCak6vZhkqpgYsZ3mK3t8CdPpmsvLebOzs-uqsLsx_q1Rb4--o-WlX37OGBoOHPSto0gxlFf45wiket7Q0AwksIzBSyzxOfBhsf9TZ09"/>
+<div class="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
+<span class="material-symbols-outlined text-white" data-icon="photo_camera">photo_camera</span>
+</div>
+</div>
+<h4 class="mt-stack-md font-bold text-on-surface text-body-lg">Alex Rivera</h4>
+<p class="text-label-sm text-primary uppercase font-bold tracking-widest">Network Architect</p>
+</div>
+<div class="space-y-stack-md">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Full Identity</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface" type="text" value="Alex Rivera"/>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">System Username</label>
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface" readonly="" type="text" value="arivera_techcore_99"/>
+</div>
+</div>
+</section>
+<!-- 4. Social Media (with Icons) -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-margin">
+<h3 class="font-headline-sm text-headline-sm text-primary mb-stack-lg">Social Integration</h3>
+<div class="space-y-stack-sm">
+<div class="flex items-center gap-stack-md bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm">
+<span class="material-symbols-outlined text-[#1877F2]" data-icon="facebook">public</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full p-0" placeholder="Facebook URL" type="text" value="facebook.com/techcore"/>
+</div>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm">
+<span class="material-symbols-outlined text-[#E4405F]" data-icon="photo_camera">photo_camera</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full p-0" placeholder="Instagram URL" type="text" value="instagram.com/techcore_systems"/>
+</div>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm">
+<span class="material-symbols-outlined text-primary" data-icon="share">share</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full p-0" placeholder="LinkedIn URL" type="text" value="linkedin.com/company/techcore"/>
+</div>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm">
+<span class="material-symbols-outlined text-on-surface" data-icon="alternate_email">alternate_email</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full p-0" placeholder="X (Twitter) Handle" type="text" value="@techcore_io"/>
+</div>
+<div class="flex items-center gap-stack-md bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm">
+<span class="material-symbols-outlined text-[#FF0000]" data-icon="video_library">video_library</span>
+<input class="bg-transparent border-none focus:ring-0 text-body-md text-on-surface w-full p-0" placeholder="YouTube Channel" type="text"/>
+</div>
+</div>
+</section>
+<!-- 6. Security (from request) -->
+<section class="bg-surface-container border border-outline-variant rounded-xl p-margin shadow-inner">
+<div class="flex items-center gap-stack-md text-primary mb-stack-lg">
+<span class="material-symbols-outlined" data-icon="security">security</span>
+<h3 class="font-headline-sm text-headline-sm">Security Gateway</h3>
+</div>
+<div class="space-y-stack-md">
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Update Password</label>
+<div class="relative">
+<input class="w-full bg-surface-container-lowest border border-outline-variant rounded-lg px-stack-md py-stack-sm text-body-md text-on-surface pr-10" type="password" value="••••••••••••"/>
+<span class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-on-surface-variant cursor-pointer hover:text-primary transition-colors" data-icon="visibility">visibility</span>
+</div>
+</div>
+<div class="space-y-stack-xs">
+<label class="font-label-md text-label-md text-outline uppercase">Verify Connection</label>
+<button class="w-full py-stack-sm border border-primary text-primary font-bold rounded-lg hover:bg-primary/5 transition-colors">Generate New API Key</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+<!-- 8. Backup & System (Full Width Footer Control Panel) -->
+<section class="bg-surface-container-high border border-outline-variant rounded-xl p-margin shadow-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 p-stack-sm">
+<span class="text-[8px] font-label-sm text-outline uppercase tracking-widest opacity-30">Infrastructure Control Panel v2.0</span>
+</div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-gutter border-b border-outline-variant pb-stack-lg mb-stack-lg">
+<div class="flex items-center gap-stack-md text-primary">
+<span class="material-symbols-outlined text-[32px]" data-icon="settings_suggest">settings_suggest</span>
+<div>
+<h3 class="font-headline-md text-headline-md">System Management</h3>
+<p class="text-on-surface-variant text-body-md">Node maintenance and core synchronization utilities.</p>
+</div>
+</div>
+<div class="flex gap-stack-md">
+<button class="bg-surface-container-highest text-on-surface px-stack-lg py-stack-md rounded-xl font-bold flex items-center gap-stack-md hover:brightness-125 transition-all shadow-lg">
+<span class="material-symbols-outlined" data-icon="backup">backup</span>
+                        Sync &amp; Backup
+                    </button>
+<button class="bg-primary text-on-primary px-stack-lg py-stack-md rounded-xl font-bold flex items-center gap-stack-md hover:scale-105 active:scale-95 transition-all shadow-xl">
+<span class="material-symbols-outlined" data-icon="restore">restore</span>
+                        Node Restore
+                    </button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface-container border border-outline-variant p-stack-md rounded-xl flex items-center justify-between group cursor-pointer hover:bg-surface-container-lowest transition-colors">
+<div>
+<div class="font-label-md text-on-surface font-bold">Maintenance Mode</div>
+<div class="text-[10px] text-outline uppercase">Offline for node syncing</div>
+</div>
+<div class="w-10 h-5 bg-outline-variant rounded-full relative transition-colors">
+<div class="absolute left-0.5 top-0.5 w-4 h-4 bg-surface rounded-full transition-transform"></div>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant p-stack-md rounded-xl flex items-center justify-between group cursor-pointer hover:bg-surface-container-lowest transition-colors">
+<div>
+<div class="font-label-md text-on-surface font-bold">Automated Backups</div>
+<div class="text-[10px] text-primary uppercase">Active: Daily 04:00Z</div>
+</div>
+<div class="w-10 h-5 bg-primary rounded-full relative transition-colors">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-on-primary rounded-full transition-transform"></div>
+</div>
+</div>
+<div class="bg-surface-container border border-outline-variant p-stack-md rounded-xl flex items-center justify-between group cursor-pointer hover:bg-surface-container-lowest transition-colors">
+<div>
+<div class="font-label-md text-on-surface font-bold">System Notifications</div>
+<div class="text-[10px] text-primary uppercase">Critical Only</div>
+</div>
+<div class="w-10 h-5 bg-primary rounded-full relative transition-colors">
+<div class="absolute right-0.5 top-0.5 w-4 h-4 bg-on-primary rounded-full transition-transform"></div>
+</div>
+</div>
+<div class="flex gap-stack-sm">
+<button class="flex-grow flex items-center justify-center gap-stack-sm bg-surface-container border border-outline-variant rounded-xl text-label-md text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-[18px]">cleaning_services</span>
+                        Clear Cache
+                    </button>
+</div>
+</div>
+</section>
+</div>
+<!-- Sticky Save Bar -->
+<div class="fixed bottom-0 left-64 right-0 bg-surface/90 backdrop-blur-xl border-t border-outline-variant px-margin py-stack-md flex justify-between items-center z-40 shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.5)]">
+<div class="flex items-center gap-stack-md">
+<div class="flex items-center gap-stack-sm text-primary">
+<span class="material-symbols-outlined animate-pulse" data-icon="cloud_sync">cloud_sync</span>
+<span class="font-label-md text-label-md font-bold uppercase tracking-widest">Environment Synced</span>
+</div>
+<div class="h-4 w-[1px] bg-outline-variant hidden sm:block"></div>
+<p class="text-on-surface-variant text-label-sm hidden sm:block">Last integrity check: 2 minutes ago</p>
+</div>
+<div class="flex gap-stack-md">
+<button class="px-stack-lg py-stack-sm border border-outline text-on-surface font-bold rounded-lg hover:bg-surface-container-high transition-all">Discard Pending Changes</button>
+<button class="px-stack-xl py-stack-sm bg-primary text-on-primary font-bold rounded-lg shadow-[0_4px_15px_-3px_rgba(22,163,74,0.4)] hover:brightness-110 active:scale-95 transition-all">Deploy Configuration</button>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto bg-surface-container-lowest border-t border-outline-variant flex justify-between items-center w-full px-margin py-stack-md text-label-sm">
+<div class="flex items-center gap-margin">
+<span class="font-label-md text-label-md font-bold text-on-surface">TechCore Infrastructure</span>
+<span class="text-on-surface-variant">© 2024 TechCore Systems. All nodes operational.</span>
+</div>
+<div class="flex gap-stack-lg">
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">System Documentation</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Node Status</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors" href="#">Security Protocols</a>
+</div>
+</footer>
+</main>
+</body></html>
